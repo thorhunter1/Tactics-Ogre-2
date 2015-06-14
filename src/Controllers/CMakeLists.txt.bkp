@@ -1,0 +1,12 @@
+#add_subdirectory( RenderableObject )
+
+set(SOURCE
+   ${SOURCE}
+   ${CMAKE_CURRENT_SOURCE_DIR}/UnitController.cpp
+   PARENT_SCOPE
+)
+set(HEADERS
+   ${HEADERS}
+   ${CMAKE_CURRENT_SOURCE_DIR}/UnitController.hpp
+   PARENT_SCOPE
+)
