@@ -11,9 +11,6 @@ class UnitSpritePreset : public SpritePreset
 {
     public:
 
-        virtual int Load( const std::string& presetPath ) {}
-        
-        virtual sf::Sprite getSprite() {}
         virtual sf::Sprite getSprite( unsigned int frameID ) {}
 };
 

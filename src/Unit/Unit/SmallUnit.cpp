@@ -10,6 +10,8 @@ SmallUnit::SmallUnit()
 int SmallUnit::setSpritePreset( const SpritePreset* sPreset )
 {
     sPreset_ = const_cast< SpritePreset* >( sPreset );
+    loadRenderImage( sPreset_->getImage() );
+    updateTexture();
 }
 
 int SmallUnit::setAnimationSet( const AnimationSet& /*animSet*/ )

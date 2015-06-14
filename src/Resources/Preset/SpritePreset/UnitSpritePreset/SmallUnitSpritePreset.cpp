@@ -6,18 +6,6 @@
 
 #include "Utils/Debug/DebugUtils.hpp"
 
-int SmallUnitSpritePreset::Load( const std::string& presetPath )
-{
-    int ret = !spriteImage_.loadFromFile( presetPath );
-
-    TraceReturn( ret, "Load file failed" );
-}
-
-sf::Sprite SmallUnitSpritePreset::getSprite()
-{
-    return sf::Sprite( spriteImage_ );
-}
-
 sf::Sprite SmallUnitSpritePreset::getSprite( unsigned int frameID )
 {
     int bonusWidth = ( frameID == 7 || frameID == 16 ) ? 3 : 0;
@@ -32,7 +20,9 @@ sf::Sprite SmallUnitSpritePreset::getSprite( unsigned int frameID )
           frameWidth_ + bonusWidth,
           frameHeight_ );
 
-    sf::Sprite temp_sprite = sf::Sprite( spriteImage_, frame_rect );
+    sf::Sprite temp_sprite = sf::Sprite();
+
+    temp_sprite.setTextureRect( frame_rect );
 
     return temp_sprite;
 }

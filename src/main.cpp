@@ -28,7 +28,7 @@ int main()
 
     while( window.isOpen() ) 
     {
-        sf::Sprite sprite = First_unit->getSprite();
+        sf::Sprite sprite = First_unit->getRenderSprite();
 
         sprite.setPosition(100, 25);
 

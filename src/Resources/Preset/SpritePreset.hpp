@@ -12,14 +12,14 @@ class SpritePreset : public Preset
 {
     protected:
 
-        sf::Texture  spriteImage_;
+        sf::Image  spriteImage_;
 
     public:
 
-        virtual int Load( const std::string& presetPath ) {}
-        
-        virtual sf::Sprite getSprite() {}
+        virtual int Load( const std::string& presetPath );
         virtual sf::Sprite getSprite( unsigned int frameID ) {}
+
+        sf::Image& getImage() { return spriteImage_; }
 
 };
 

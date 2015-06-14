@@ -7,16 +7,31 @@
 
 class RenderableObject
 {
+    friend class Renderer;
+
     public:
         
-        sf::Sprite getSprite() { return renderSprite_; }
+        //RenderableObject( const RenderableObject& obj );
+        
+        //RenderableObject getRenderCopy();
+
+        /// Gets current sprite to render
+        sf::Sprite getRenderSprite();
+
+        /// Updates renderTexture_ from renderImage_
+        int updateTexture();
 
     protected:
 
+        virtual int loadRenderImage( const sf::Image& image ); 
+
+        sf::Image   renderImage_;
         sf::Texture renderTexture_;
         sf::Sprite  renderSprite_;
+        TeamColor   teamColor_;
 
-        TeamColor teamColor_;
+        bool        fUpdateTexture_;
+        bool        fUseTeamColor_;
         
 };
 
