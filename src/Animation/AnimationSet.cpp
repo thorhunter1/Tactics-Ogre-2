@@ -2,18 +2,18 @@
 
 #include "Utils/Debug/DebugUtils.hpp"
 
-Animation* AnimationSet::getAnimation( const std::string& name, Orientation orientation )
+Animation& AnimationSet::getAnimation( const std::string& name, Orientation orientation )
 {
     if(     animationSet_.find( name )              != animationSet_.end() &&
             animationSet_[name].find( orientation ) != animationSet_[name].end() )
     {
-        return &animationSet_[name][orientation];
+        return animationSet_[name][orientation];
     }
     else
     {
         Error( "Couldn't find animation: " << name );
 
-        return NULL;
+        //return NULL;
     }
 
 }

@@ -14,12 +14,19 @@ class RenderableObject
         //RenderableObject( const RenderableObject& obj );
         
         //RenderableObject getRenderCopy();
+        RenderableObject();
+
+        /// Sets teamcolor
+        int setTeamColor( TeamColor color );
 
         /// Gets current sprite to render
         sf::Sprite getRenderSprite();
 
         /// Updates renderTexture_ from renderImage_
         int updateTexture();
+
+        ///Updates renderTexture_ from external source
+        int updateTexture( const sf::Image& image );
 
     protected:
 

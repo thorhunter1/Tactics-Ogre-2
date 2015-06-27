@@ -17,6 +17,7 @@ class AnimatedObject : public RenderableObject
         int     stopAnimation();
         //bool    isAnimationFinished();
         int     setOrientation( Orientation orient );
+        int     rotate();
 
 
     protected:
@@ -28,7 +29,7 @@ class AnimatedObject : public RenderableObject
 
         SpritePreset*   sPreset_            = NULL;
         AnimationSet    animationSet_;
-        Animation*      currentAnimation_   = NULL;
+        Animation       currentAnimation_   = Animation::None;
         float           animationSpeed_     = 100.0;
         Orientation     orientation_        = Orientation::None;
 

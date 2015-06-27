@@ -12,9 +12,9 @@ namespace Graphics
         sf::IntRect rect = sprite.getTextureRect();
 
         sprite.setTextureRect( 
-                sf::IntRect( rect.left + rect.width, 0, -rect.width, rect.height )
-                );
-        rect = sprite.getTextureRect();
+                sf::IntRect( rect.left + rect.width, rect.top, -rect.width, rect.height )
+               );
+        //sprite.scale( -1.0f, 1.0f );
     }
 
 }

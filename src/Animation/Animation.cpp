@@ -2,6 +2,9 @@
 #include "Animation/Animation.hpp"
 #include "Utils/Debug/DebugUtils.hpp"
 
+const Animation Animation::None = Animation( "none", AnimationFrameList() );
+
+
 Animation::Animation( const std::string& name, const AnimationFrameList& list )
     : frameList_( list ), iCurrentFrame_( 0 ), name_( name ),
       fLooping_( false )
@@ -63,3 +66,4 @@ int Animation::map( const Animation& animation )
 
     TraceReturn( ret, "Can't map animation" );
 }
+

@@ -8,7 +8,10 @@ using AnimationFrame = int;
 using AnimationFrameList = std::vector< AnimationFrame >;
 
 class Animation
-{
+{   public:
+
+        static const Animation None;
+
     public:
 
         Animation( const std::string& name, const AnimationFrameList& list );

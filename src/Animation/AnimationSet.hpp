@@ -11,7 +11,7 @@ class AnimationSet
     public:
 
         AnimationSet() {}
-        Animation* getAnimation( const std::string& name, Orientation orientation );
+        Animation& getAnimation( const std::string& name, Orientation orientation );
         int addAnimation( const Animation& animation, Orientation orientation );
 
     protected:

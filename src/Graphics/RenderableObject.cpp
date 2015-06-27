@@ -14,6 +14,19 @@ RenderableObject RenderableObject::getRenderCopy()
     return obj;
 }
 */
+RenderableObject::RenderableObject()
+{
+    renderSprite_.setTexture( renderTexture_ );
+}
+
+int RenderableObject::setTeamColor( TeamColor color )
+{
+    if( teamColor_ != color )
+    {
+        teamColor_ = color;
+        fUpdateTexture_ = true;
+    }
+}
 
 sf::Sprite RenderableObject::getRenderSprite()
 {
@@ -23,6 +36,13 @@ sf::Sprite RenderableObject::getRenderSprite()
 int RenderableObject::updateTexture()
 {
     fUpdateTexture_ = false;
+    renderTexture_.loadFromImage( renderImage_ );
+}
+
+int RenderableObject::updateTexture( const sf::Image& image )
+{
+    fUpdateTexture_ = false;
+    renderTexture_.loadFromImage( image );
 }
 
 int RenderableObject::loadRenderImage( const sf::Image& image )
