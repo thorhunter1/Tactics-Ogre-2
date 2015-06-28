@@ -13,22 +13,34 @@ class AnimatedObject : public RenderableObject
 {
     public:
 
+        /// plays animation
         int     playAnimation( const std::string& name, bool playInLoop = false );
+
+        /// stops playing animation
         int     stopAnimation();
-        //bool    isAnimationFinished();
+
+        /// checks if animation finished playing
+        bool    isAnimationFinished();
+
+        /// sets orientation of this object
         int     setOrientation( Orientation orient );
+
+        /// rotates this object clockwise
         int     rotate();
 
+        /// sets animation speed % of this object
+        int     setAnimationSpeed( float speed );
 
     protected:
 
-        //void onAnimationFinish();
+        /// binds handle of sprite preset to this object
+        virtual int bindSpritePreset( const SpritePreset* sPreset ) {}
 
-        virtual int setSpritePreset( const SpritePreset* sPreset ) {}
+        /// sets animation set of this object
         virtual int setAnimationSet( const AnimationSet& animationSet );
 
         SpritePreset*   sPreset_            = NULL;
-        AnimationSet    animationSet_;
+        AnimationSet    animationSet_       = AnimationSet::None;
         Animation       currentAnimation_   = Animation::None;
         float           animationSpeed_     = 100.0;
         Orientation     orientation_        = Orientation::None;
@@ -37,10 +49,12 @@ class AnimatedObject : public RenderableObject
 
     private:
 
+        /// External thread managing the animation
+        void            _runAnimation();
+        
         std::thread     animationThread_;
         std::mutex      animSetMutex_;
         bool            fThreadRun_         = false;
-        void runAnimation();
 
 };
 

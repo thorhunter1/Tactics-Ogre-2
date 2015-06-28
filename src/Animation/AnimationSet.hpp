@@ -9,6 +9,9 @@
 class AnimationSet
 {
     public:
+        static const AnimationSet None;
+
+    public:
 
         AnimationSet() {}
         Animation& getAnimation( const std::string& name, Orientation orientation );
@@ -17,6 +20,11 @@ class AnimationSet
     protected:
 
         std::map< std::string, std::map<Orientation, Animation> > animationSet_;
+
+    public:
+
+        bool operator ==( const AnimationSet& other );
+        bool operator !=( const AnimationSet& other );
 };
 
 #endif //ANIMATION_SET_HPP

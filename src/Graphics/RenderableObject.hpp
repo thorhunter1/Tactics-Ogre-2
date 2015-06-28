@@ -11,9 +11,6 @@ class RenderableObject
 
     public:
         
-        //RenderableObject( const RenderableObject& obj );
-        
-        //RenderableObject getRenderCopy();
         RenderableObject();
 
         /// Sets teamcolor
@@ -25,12 +22,14 @@ class RenderableObject
         /// Updates renderTexture_ from renderImage_
         int updateTexture();
 
-        ///Updates renderTexture_ from external source
+        /// Updates renderTexture_ from external source
         int updateTexture( const sf::Image& image );
 
     protected:
 
-        virtual int loadRenderImage( const sf::Image& image ); 
+        /// Binds renderImage_ to preset
+        /// Binds renderImage_ to external source
+        virtual int bindRenderImage( sf::Image* image );
 
         sf::Image   renderImage_;
         sf::Texture renderTexture_;

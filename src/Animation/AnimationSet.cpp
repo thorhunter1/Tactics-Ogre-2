@@ -13,7 +13,8 @@ Animation& AnimationSet::getAnimation( const std::string& name, Orientation orie
     {
         Error( "Couldn't find animation: " << name );
 
-        //return NULL;
+        Animation empty_animation = Animation::None;
+        return empty_animation;
     }
 
 }
@@ -21,4 +22,16 @@ Animation& AnimationSet::getAnimation( const std::string& name, Orientation orie
 int AnimationSet::addAnimation( const Animation& animation, Orientation orientation )
 {
     animationSet_[animation.getName()][orientation] = animation;
+}
+
+bool AnimationSet::operator ==( const AnimationSet& other )
+{
+    return true;
+    //return animationSet_ == other.animationSet_;
+}
+
+bool AnimationSet::operator !=( const AnimationSet& other )
+{
+    return true;
+    //return animationSet_ != other.animationSet_;
 }

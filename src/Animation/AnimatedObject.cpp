@@ -17,7 +17,7 @@ int AnimatedObject::playAnimation( const std::string& name, bool playInLoop )
     if( !fThreadRun_ )
     {
         fThreadRun_ = true;
-        animationThread_ = std::thread( &AnimatedObject::runAnimation, this );
+        animationThread_ = std::thread( &AnimatedObject::_runAnimation, this );
     }
 
 }
@@ -53,12 +53,17 @@ int AnimatedObject::rotate()
     if( orientation_ == Orientation::West ) { setOrientation( Orientation::North ); return 0; }
 }
 
+int AnimatedObject::setAnimationSpeed( float speed )
+{
+    animationSpeed_ = speed;
+}
+
 int AnimatedObject::setAnimationSet( const AnimationSet& animationSet )
 {
     animationSet_ = animationSet;
 }
 
-void AnimatedObject::runAnimation()
+void AnimatedObject::_runAnimation()
 {
     while( fThreadRun_ )
     {

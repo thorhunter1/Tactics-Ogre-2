@@ -14,8 +14,8 @@ class SmallUnitSpritePreset : public UnitSpritePreset
 
     protected:
 
-        static const int frameWidth_    = 16; //pixel value
-        static const int frameHeight_   = 32; //pixel value
+        static const int frameWidth_    = 16;
+        static const int frameHeight_   = 32;
 
         static const int spriteHorizontalCount_   = 9;
         static const int spriteVerticalCount_     = 2;
