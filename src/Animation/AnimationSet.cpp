@@ -2,6 +2,8 @@
 
 #include "Utils/Debug/DebugUtils.hpp"
 
+const AnimationSet AnimationSet::None = AnimationSet();
+
 Animation& AnimationSet::getAnimation( const std::string& name, Orientation orientation )
 {
     if(     animationSet_.find( name )              != animationSet_.end() &&
@@ -13,8 +15,9 @@ Animation& AnimationSet::getAnimation( const std::string& name, Orientation orie
     {
         Error( "Couldn't find animation: " << name );
 
-        Animation empty_animation = Animation::None;
-        return empty_animation;
+        //TODO:
+        //Animation empty_animation = Animation::None;
+        //return empty_animation;
     }
 
 }
@@ -24,14 +27,12 @@ int AnimationSet::addAnimation( const Animation& animation, Orientation orientat
     animationSet_[animation.getName()][orientation] = animation;
 }
 
-bool AnimationSet::operator ==( const AnimationSet& other )
+bool AnimationSet::operator ==( const AnimationSet& other ) const
 {
-    return true;
-    //return animationSet_ == other.animationSet_;
+    return animationSet_ == other.animationSet_;
 }
 
-bool AnimationSet::operator !=( const AnimationSet& other )
+bool AnimationSet::operator !=( const AnimationSet& other ) const
 {
-    return true;
-    //return animationSet_ != other.animationSet_;
+    return animationSet_ != other.animationSet_;
 }

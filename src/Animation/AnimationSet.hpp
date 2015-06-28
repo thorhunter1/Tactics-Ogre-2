@@ -9,6 +9,7 @@
 class AnimationSet
 {
     public:
+
         static const AnimationSet None;
 
     public:
@@ -23,8 +24,8 @@ class AnimationSet
 
     public:
 
-        bool operator ==( const AnimationSet& other );
-        bool operator !=( const AnimationSet& other );
+        bool operator ==( const AnimationSet& other ) const;
+        bool operator !=( const AnimationSet& other ) const;
 };
 
 #endif //ANIMATION_SET_HPP

@@ -5,8 +5,9 @@
 
 SmallUnit::SmallUnit()
 {
-    setAnimationSet( AnimationSet() );
+    //setAnimationSet( AnimationSet() );
 }
+/*
 int SmallUnit::setSpritePreset( const SpritePreset* sPreset )
 {
     sPreset_ = const_cast< SpritePreset* >( sPreset );
@@ -14,7 +15,7 @@ int SmallUnit::setSpritePreset( const SpritePreset* sPreset )
     updateTexture();
 }
 
-int SmallUnit::setAnimationSet( const AnimationSet& /*animSet*/ )
+int SmallUnit::setAnimationSet( const AnimationSet& animSet )
 {
     Animation walk_S    = Animation( "walk",    {0,1,0,2}       );
     Animation stand_S   = Animation( "stand",   {0}             );
@@ -46,3 +47,5 @@ int SmallUnit::setAnimationSet( const AnimationSet& /*animSet*/ )
     animationSet_.addAnimation( run_S,      Orientation::West );
     animationSet_.addAnimation( attack_S,   Orientation::West );
 }
+*/
+

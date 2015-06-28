@@ -121,19 +121,19 @@ int main()
     units.push_back( amazon1 );
     units.push_back( soldier1 );
 
-    wizard1->setSpritePreset( wizard_preset );
+    //wizard1->setSpritePreset( wizard_preset );
     wizard1->setOrientation( Orientation::South );
     wizard1->playAnimation( "walk", true );
 
-    amazon1->setSpritePreset( amazon_preset );
+    //amazon1->setSpritePreset( amazon_preset );
     amazon1->setOrientation( Orientation::South );
     amazon1->playAnimation( "walk", true );
 
-    archer1->setSpritePreset( archer_preset );
+    //archer1->setSpritePreset( archer_preset );
     archer1->setOrientation( Orientation::South );
     archer1->playAnimation( "walk", true );
 
-    soldier1->setSpritePreset( soldier_preset );
+    //soldier1->setSpritePreset( soldier_preset );
     soldier1->setOrientation( Orientation::South );
     soldier1->playAnimation( "walk", true );
 

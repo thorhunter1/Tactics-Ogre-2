@@ -1,6 +1,7 @@
 #ifndef ORIENTATION_ENUM_HPP
 #define ORIENTATION_ENUM_HPP
 
+/// Specifies orientation of an object
 enum class Orientation { North, South, East, West, None };
 
 inline std::string enum_print( Orientation orient )

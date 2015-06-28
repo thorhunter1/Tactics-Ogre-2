@@ -67,3 +67,13 @@ int Animation::map( const Animation& animation )
     TraceReturn( ret, "Can't map animation" );
 }
 
+bool Animation::operator ==( const Animation& other ) const
+{
+    return frameList_ == other.frameList_;
+}
+
+bool Animation::operator !=( const Animation& other ) const
+{
+    return frameList_ != other.frameList_;
+}
+

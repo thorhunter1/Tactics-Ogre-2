@@ -34,6 +34,11 @@ class Animation
         
         std::string         name_;
         bool                fLooping_;
+
+    public:
+
+        bool operator ==( const Animation& other ) const;
+        bool operator !=( const Animation& other ) const;
 };
 
 #endif //ANIMATION_HPP

@@ -10,11 +10,11 @@ class SmallUnit : public Unit
 
         SmallUnit();
         //TODO: protect this for factory use
-        virtual int setSpritePreset( const SpritePreset* sPreset );
+        //virtual int setSpritePreset( const SpritePreset* sPreset );
 
     protected:
 
-        virtual int setAnimationSet( const AnimationSet& animSet );
+        //virtual int setAnimationSet( const AnimationSet& animSet );
 };
 
 #endif //SMALL_UNIT_HPP

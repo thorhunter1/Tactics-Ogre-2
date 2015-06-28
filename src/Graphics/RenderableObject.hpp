@@ -27,9 +27,8 @@ class RenderableObject
 
     protected:
 
-        /// Binds renderImage_ to preset
-        /// Binds renderImage_ to external source
-        virtual int bindRenderImage( sf::Image* image );
+        /// Binds renderImage_ to external image
+        virtual int bindRenderImage( const sf::Image& image );
 
         sf::Image   renderImage_;
         sf::Texture renderTexture_;
