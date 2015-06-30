@@ -5,6 +5,7 @@ int Unit::loadPresets()
 	int ret = 0;
 	char* ret_msg = "";
 
+	// Load sprite preset
 	if( spritePreset_ != NULL )
 	{
 		spritePreset_->load();
@@ -16,6 +17,8 @@ int Unit::loadPresets()
 		ret = -1;
 		ret_msg = "Unit has no sprite preset to load"
 	}
+
+	// Load animation preset
 
 	TraceReturn( ret, ret_msg );
 

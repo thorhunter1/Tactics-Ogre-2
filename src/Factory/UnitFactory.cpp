@@ -15,6 +15,12 @@ Unit* UnitFactory::create( std::string name, UnitSize size, std::string presetPa
 	new_unit->bindSpritePreset( new_unit->spritePreset_ );
 	new_unit->spritePreset_->setPresetPath( presetPath );
 
+	// Setup animation preset
+	AnimationSetPreset anim_set_p = new AnimationSetPreset();
+	anim_set_p->load( "" );
+	new_unit->setAnimationSet( anim_set_p->animationSet_ );
+	delete anim_set_p;
+
 	UnitFactory::getInst().managedUnits_.push_back( new_unit );
 
 	return new_unit;
