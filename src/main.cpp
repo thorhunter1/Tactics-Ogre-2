@@ -35,6 +35,7 @@ void print_commands()
     std::cout << "'help' - prints this" << std::endl;
     std::cout << "'exit' - exits application" <<  std::endl;
     std::cout << "'select - selects next unit" << std::endl;
+    std::cout << "'rotate - rotates selected unit" << std::endl;
     std::cout << "'color_<color>' - sets unit team color" << std::endl;
     std::cout << " - available colors: red, green, blue, teal, gray, black" << std::endl;
     std::cout << "'anim_<anim>' sets unit animation" << std::endl;
@@ -103,11 +104,6 @@ void cmd_init()
 
 int main()
 {
-    //SpritePreset* wizard_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/wizard.png" );
-    //SpritePreset* amazon_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/amazon.png" );
-    //SpritePreset* soldier_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/archer.png" );
-    //SpritePreset* archer_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/soldier.png" );
-       
     Unit* wizard1 =  UnitFactory::create( "Jim", UnitSize::Small, "../resources/Sprites/Unit/wizard.png" );
     Unit* amazon1 =  UnitFactory::create( "Amy", UnitSize::Small, "../resources/Sprites/Unit/amazon.png" );
     Unit* archer1 =  UnitFactory::create( "May", UnitSize::Small, "../resources/Sprites/Unit/archer.png" );
