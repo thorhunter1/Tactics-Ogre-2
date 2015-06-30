@@ -7,8 +7,6 @@
 
 class UnitFactory
 {
-	friend class Unit;
-
 	public:
 		static Unit* create( std::string name, UnitSize size, std::string presetPath );
 		static Unit* get( unsigned int ID );
@@ -16,7 +14,7 @@ class UnitFactory
 		static int remove( Unit* unit );
 
 	protected:
-		static inline UnitFactory& getInst() { static UnitFactory unit_factory; return unit_factory }
+		static inline UnitFactory& getInst() { static UnitFactory unit_factory; return unit_factory; }
 
 	private:
 		unsigned int unitCount_ = 0;

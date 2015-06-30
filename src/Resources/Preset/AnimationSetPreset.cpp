@@ -1,4 +1,4 @@
-#include "Resources/AnimationSetPreset.hpp"
+#include "Resources/Preset/AnimationSetPreset.hpp"
 
 int AnimationSetPreset::load( const std::string& presetPath )
 {
@@ -36,7 +36,7 @@ int AnimationSetPreset::load( const std::string& presetPath )
 
 }
 
-AnimationSet AnimatioNSetPreset::getAnimationSet()
+AnimationSet AnimationSetPreset::getAnimationSet()
 {
 	return animationSet_;
 }

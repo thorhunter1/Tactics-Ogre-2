@@ -9,7 +9,8 @@
 class SmallUnitSpritePreset : public UnitSpritePreset
 {
     public:
-
+	
+	SmallUnitSpritePreset() {}
         virtual sf::Sprite getSprite( unsigned int frameID );
 
     protected:

@@ -2,9 +2,9 @@
 
 #include "Utils/Debug/DebugUtils.hpp"
 
-SpritePreset::SpritePreset( const std::string& presetPath )
+int SpritePreset::load()
 {
-	load( presetPath );
+	load( presetPath_ );
 }
 
 int SpritePreset::load( const std::string& presetPath )

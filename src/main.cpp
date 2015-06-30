@@ -7,9 +7,11 @@
 
 #include "Unit/Unit/SmallUnit.hpp"
 
-#include "SFML.hpp"
-
 #include "Graphics/Renderer.hpp"
+
+#include "Factory/UnitFactory.hpp"
+
+#include "SFML.hpp"
 
 #include <thread>
 #include <chrono>
@@ -101,36 +103,27 @@ void cmd_init()
 
 int main()
 {
-    SpritePreset* wizard_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/wizard.png" );
-    SpritePreset* amazon_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/amazon.png" );
-    SpritePreset* soldier_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/archer.png" );
-    SpritePreset* archer_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/soldier.png" );
+    //SpritePreset* wizard_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/wizard.png" );
+    //SpritePreset* amazon_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/amazon.png" );
+    //SpritePreset* soldier_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/archer.png" );
+    //SpritePreset* archer_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/soldier.png" );
        
-    SmallUnit* wizard1 = new SmallUnit();
-    SmallUnit* amazon1 = new SmallUnit();
-    SmallUnit* archer1 = new SmallUnit();
-    SmallUnit* soldier1 = new SmallUnit();
+    Unit* wizard1 =  UnitFactory::create( "Jim", UnitSize::Small, "../resources/Sprites/Unit/wizard.png" );
+    Unit* amazon1 =  UnitFactory::create( "Amy", UnitSize::Small, "../resources/Sprites/Unit/amazon.png" );
+    Unit* archer1 =  UnitFactory::create( "May", UnitSize::Small, "../resources/Sprites/Unit/archer.png" );
+    Unit* soldier1 = UnitFactory::create( "Kim", UnitSize::Small, "../resources/Sprites/Unit/soldier.png" );
 
     units.push_back( wizard1 );
     units.push_back( archer1 );
     units.push_back( amazon1 );
     units.push_back( soldier1 );
 
-    //wizard1->setSpritePreset( wizard_preset );
-    wizard1->setOrientation( Orientation::South );
-    wizard1->playAnimation( "walk", true );
-
-    //amazon1->setSpritePreset( amazon_preset );
-    amazon1->setOrientation( Orientation::South );
-    amazon1->playAnimation( "walk", true );
-
-    //archer1->setSpritePreset( archer_preset );
-    archer1->setOrientation( Orientation::South );
-    archer1->playAnimation( "walk", true );
-
-    //soldier1->setSpritePreset( soldier_preset );
-    soldier1->setOrientation( Orientation::South );
-    soldier1->playAnimation( "walk", true );
+    for( auto iter = units.begin(); iter != units.end(); ++iter )
+    {
+	    (*iter)->loadPresets();
+	    (*iter)->setOrientation( Orientation::South );
+	    (*iter)->playAnimation( "walk", true );
+    }
 
     std::thread cmd_thr( cmd_init );
 

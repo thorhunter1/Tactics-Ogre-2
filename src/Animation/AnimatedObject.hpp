@@ -11,6 +11,9 @@
 
 class AnimatedObject : public RenderableObject
 {
+	//TODO: get rid of this
+	friend class UnitFactory;
+
     public:
 
         /// plays animation
@@ -34,7 +37,7 @@ class AnimatedObject : public RenderableObject
     protected:
 
         /// binds handle of sprite preset to this object
-        virtual int bindSpritePreset( const SpritePreset* sPreset );
+        virtual int bindSpritePreset( SpritePreset* sPreset );
 
 	/// unbinds handle of sprite preset from this object
 	virtual int unbindSpritePreset();

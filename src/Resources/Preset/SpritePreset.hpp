@@ -17,11 +17,11 @@ class SpritePreset : public Preset
 
     public:
  
-	/// Creates sprite preset and loads image file
-     	SpritePreset( const std::string& presetPath );
-
         /// Loads image from file into memory
         virtual int load( const std::string& presetPath );
+
+	/// Loads image from preset path into mempry
+	virtual int load();
 
         /// Frees loaded image
         virtual int unload();

@@ -58,7 +58,7 @@ int AnimatedObject::setAnimationSpeed( float speed )
     animationSpeed_ = speed;
 }
 
-int AnimatedObject::bindSpritePreset( const SpritePreset* sPreset )
+int AnimatedObject::bindSpritePreset( SpritePreset* sPreset )
 {
 	int ret = 0;
 

@@ -2,6 +2,7 @@
 #define UNIT_HPP
 
 #include "Resources/Preset/SpritePreset.hpp"
+#include "Resources/Preset/AnimationSetPreset.hpp"
 #include "Animation/AnimatedObject.hpp"
 
 #include "Utils/Game/UnitEnum.hpp"
@@ -17,14 +18,16 @@ struct UnitInfo
 /// Struct for unit status information
 struct UnitStatus
 {
-	UnitMoveType 	movement;
-	UnitSize	size;
+	MovementType::UnitMoveType 	movement;
+	UnitSize			size;
 };
 
 class Unit : public AnimatedObject
 {
+	friend class UnitFactory;
+
     public:
-	    UnitHeader info;
+	    UnitInfo info;
 	    UnitStatus status;
 
 	    /// Loads required presets
@@ -36,10 +39,8 @@ class Unit : public AnimatedObject
 
     protected:
 
-
-    private:
 	    /// Pointer to allocated preset
-	    SpritePreset* spritePreset = NULL;
+	    SpritePreset* spritePreset_ = NULL;
 
 };
 

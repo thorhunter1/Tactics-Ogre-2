@@ -9,13 +9,13 @@ int Unit::loadPresets()
 	if( spritePreset_ != NULL )
 	{
 		spritePreset_->load();
-		loadRenderImage( sPreset->getImage() );
+		bindRenderImage( *sPreset_->getImage() );
 		updateTexture();
 	}
 	else
 	{
 		ret = -1;
-		ret_msg = "Unit has no sprite preset to load"
+		ret_msg = "Unit has no sprite preset to load";
 	}
 
 	// Load animation preset
@@ -25,7 +25,7 @@ int Unit::loadPresets()
 
 }
 
-int Unit unloadPresets()
+int Unit::unloadPresets()
 {
 	if( spritePreset_ != NULL )
 		spritePreset_->unload();
