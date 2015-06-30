@@ -58,6 +58,23 @@ int AnimatedObject::setAnimationSpeed( float speed )
     animationSpeed_ = speed;
 }
 
+int AnimatedObject::bindSpritePreset( const SpritePreset* sPreset )
+{
+	int ret = 0;
+
+	if( sPreset != NULL )
+		sPreset_ = sPreset;
+	else
+		ret = -1;
+	
+	TraceReturn( ret, "Cannot bind a null pointer" );
+}
+
+int AnimatedObject::unbindSpritePreset()
+{
+	sPreset_ = NULL;
+}
+
 int AnimatedObject::setAnimationSet( const AnimationSet& animationSet )
 {
     animationSet_ = animationSet;

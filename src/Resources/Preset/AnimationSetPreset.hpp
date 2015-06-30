@@ -20,10 +20,10 @@ class AnimationSetPreset : public Preset
     public:
     
         /// Loads AnimationSet from file into memory
-        virtual int Load( const std::string& presetPath );
+        virtual int load( const std::string& presetPath );
 
         /// Frees loaded AnimationSet
-        //virtual int Unload();
+        //virtual int unload();
 
         /// Returns AnimationSet
         virtual AnimationSet getAnimationSet();

@@ -3,6 +3,7 @@ add_subdirectory( Utils )
 add_subdirectory( Animation )
 add_subdirectory( Unit )
 add_subdirectory( Graphics )
+add_subdirectory( Factory )
 
 set(SOURCE
    ${SOURCE}

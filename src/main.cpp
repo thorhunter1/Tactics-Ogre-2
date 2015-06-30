@@ -101,16 +101,11 @@ void cmd_init()
 
 int main()
 {
-    SpritePreset* wizard_preset = new SmallUnitSpritePreset();
-    SpritePreset* amazon_preset = new SmallUnitSpritePreset();
-    SpritePreset* soldier_preset = new SmallUnitSpritePreset();
-    SpritePreset* archer_preset = new SmallUnitSpritePreset();
-    
-    wizard_preset->Load( "../resources/Sprites/Unit/wizard.png" );
-    amazon_preset->Load( "../resources/Sprites/Unit/amazon.png" );
-    archer_preset->Load( "../resources/Sprites/Unit/archer.png" );
-    soldier_preset->Load( "../resources/Sprites/Unit/soldier.png" );
-    
+    SpritePreset* wizard_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/wizard.png" );
+    SpritePreset* amazon_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/amazon.png" );
+    SpritePreset* soldier_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/archer.png" );
+    SpritePreset* archer_preset = new SmallUnitSpritePreset( "../resources/Sprites/Unit/soldier.png" );
+       
     SmallUnit* wizard1 = new SmallUnit();
     SmallUnit* amazon1 = new SmallUnit();
     SmallUnit* archer1 = new SmallUnit();

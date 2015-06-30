@@ -16,12 +16,15 @@ class SpritePreset : public Preset
         sf::Image*  spriteImage_ = NULL;
 
     public:
-    
+ 
+	/// Creates sprite preset and loads image file
+     	SpritePreset( const std::string& presetPath );
+
         /// Loads image from file into memory
-        virtual int Load( const std::string& presetPath );
+        virtual int load( const std::string& presetPath );
 
         /// Frees loaded image
-        virtual int Unload();
+        virtual int unload();
 
         /*! Returns sprite based on frame ID specified
          * @image html SpriteID.png

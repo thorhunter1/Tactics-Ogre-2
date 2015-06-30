@@ -2,13 +2,19 @@
 
 #include "Utils/Debug/DebugUtils.hpp"
 
-int SpritePreset::Load( const std::string& presetPath )
+SpritePreset::SpritePreset( const std::string& presetPath )
+{
+	load( presetPath );
+}
+
+int SpritePreset::load( const std::string& presetPath )
 {
     int ret = 0;
 
     if( spriteImage_ != NULL ) 
     {
         Warning( "New sprite allocated before previous one was freed" );
+	unload();
     }
 
     spriteImage_ = new sf::Image;
@@ -23,7 +29,7 @@ int SpritePreset::Load( const std::string& presetPath )
     TraceReturn( ret, "Load from file failed" );
 }
 
-int SpritePreset::Unload()
+int SpritePreset::unload()
 {
     int ret = 0;
 

@@ -34,7 +34,10 @@ class AnimatedObject : public RenderableObject
     protected:
 
         /// binds handle of sprite preset to this object
-        virtual int bindSpritePreset( const SpritePreset* sPreset ) {}
+        virtual int bindSpritePreset( const SpritePreset* sPreset );
+
+	/// unbinds handle of sprite preset from this object
+	virtual int unbindSpritePreset();
 
         /// sets animation set of this object
         virtual int setAnimationSet( const AnimationSet& animationSet );

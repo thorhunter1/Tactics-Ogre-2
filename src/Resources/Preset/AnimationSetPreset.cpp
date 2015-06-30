@@ -1,6 +1,6 @@
 #include "Resources/AnimationSetPreset.hpp"
 
-int AnimationSetPreset::Load( const std::string& presetPath )
+int AnimationSetPreset::load( const std::string& presetPath )
 {
 }
 
