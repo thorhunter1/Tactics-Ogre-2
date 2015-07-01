@@ -1,6 +1,7 @@
 add_subdirectory( Debug )
 add_subdirectory( Game )
 add_subdirectory( Graphics )
+add_subdirectory( Resources )
 
 set(SOURCE
    ${SOURCE}

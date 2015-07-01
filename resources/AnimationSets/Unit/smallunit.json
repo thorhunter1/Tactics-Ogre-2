@@ -1,0 +1,8 @@
+{
+	"animation_set" : [
+	{ "name" : "walk", 	"south" : [0, 1, 0, 2],			"north" : [3, 4, 3, 5] },
+	{ "name" : "stand",	"south" : [0],				"north" : [3] },
+	{ "name" : "run", 	"south" : [4, 5],	 		"north" : [1, 2] },
+	{ "name" : "attack", 	"south" : [3, 15, 16, 17, 15, 3], 	"north" : [0, 6, 7, 8, 6, 0] }
+       	]
+}

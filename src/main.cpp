@@ -11,6 +11,8 @@
 
 #include "Factory/UnitFactory.hpp"
 
+#include "Utils/Resources/AnimationSetParser.hpp"
+
 #include "SFML.hpp"
 
 #include <thread>
@@ -104,6 +106,9 @@ void cmd_init()
 
 int main()
 {
+
+    AnimationSet set = Parser::AnimationSetParser::parse( "../resources/AnimationSets/Unit/smallunit.json" );
+
     Unit* wizard1 =  UnitFactory::create( "Jim", UnitSize::Small, "../resources/Sprites/Unit/wizard.png" );
     Unit* amazon1 =  UnitFactory::create( "Amy", UnitSize::Small, "../resources/Sprites/Unit/amazon.png" );
     Unit* archer1 =  UnitFactory::create( "May", UnitSize::Small, "../resources/Sprites/Unit/archer.png" );
