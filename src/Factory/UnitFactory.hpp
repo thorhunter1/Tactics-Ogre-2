@@ -8,7 +8,7 @@
 class UnitFactory
 {
 	public:
-		static Unit* create( std::string name, UnitSize size, std::string presetPath );
+		static Unit* create( const std::string& name, UnitSize size, const std::string& spritePresetPath, const std::string& animationSetPresetPath  );
 		static Unit* get( unsigned int ID );
 		static int remove( unsigned int ID );
 		static int remove( Unit* unit );

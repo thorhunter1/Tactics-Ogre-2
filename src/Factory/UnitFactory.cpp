@@ -1,14 +1,12 @@
 #include "Factory/UnitFactory.hpp"
 #include "Resources/Preset/SpritePreset/UnitSpritePreset/SmallUnitSpritePreset.hpp"
 
-Unit* UnitFactory::create( std::string name, UnitSize size, std::string presetPath )
+Unit* UnitFactory::create( const std::string& name, UnitSize size, const std::string& spritePresetPath, const std::string& animationSetPresetPath )
 {
 	Unit* new_unit = new Unit();
 
 	if( size == UnitSize::Small )
 		new_unit->spritePreset_ = new SmallUnitSpritePreset();
-
-	new_unit->spritePreset_->setPresetPath( presetPath );
 
 	// Set general unit info
 	new_unit->info.ID = UnitFactory::getInst().unitCount_++;
@@ -16,11 +14,11 @@ Unit* UnitFactory::create( std::string name, UnitSize size, std::string presetPa
 
 	// Setup sprite preset
 	new_unit->bindSpritePreset( new_unit->spritePreset_ );
-	new_unit->spritePreset_->setPresetPath( presetPath );
+	new_unit->spritePreset_->setPresetPath( spritePresetPath );
 
 	// Setup animation preset
 	AnimationSetPreset* anim_set_p = new AnimationSetPreset();
-	anim_set_p->load( "" );
+	anim_set_p->load( animationSetPresetPath );
 	new_unit->setAnimationSet( anim_set_p->getAnimationSet() );
 	delete anim_set_p;
 

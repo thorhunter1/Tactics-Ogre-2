@@ -104,15 +104,35 @@ void cmd_init()
     get_command();
 }
 
+std::string anim_set_preset( "../resources/AnimationSets/Unit/smallunit.json" );
 int main()
 {
 
-    AnimationSet set = Parser::AnimationSetParser::parse( "../resources/AnimationSets/Unit/smallunit.json" );
 
-    Unit* wizard1 =  UnitFactory::create( "Jim", UnitSize::Small, "../resources/Sprites/Unit/wizard.png" );
-    Unit* amazon1 =  UnitFactory::create( "Amy", UnitSize::Small, "../resources/Sprites/Unit/amazon.png" );
-    Unit* archer1 =  UnitFactory::create( "May", UnitSize::Small, "../resources/Sprites/Unit/archer.png" );
-    Unit* soldier1 = UnitFactory::create( "Kim", UnitSize::Small, "../resources/Sprites/Unit/soldier.png" );
+    //AnimationSet set = Parser::AnimationSetParser::parse( "../resources/AnimationSets/Unit/smallunit.json" );
+
+    Unit* wizard1 = UnitFactory::create( 
+		    "Jim", 
+		    UnitSize::Small, 
+		    "../resources/Sprites/Unit/wizard.png",
+		    anim_set_preset );
+
+    Unit* amazon1 = UnitFactory::create( 
+		    "Amy", 
+		    UnitSize::Small,
+		    "../resources/Sprites/Unit/amazon.png",
+		    anim_set_preset );
+
+    Unit* archer1 = UnitFactory::create( 
+		    "May", 
+		    UnitSize::Small, 
+		    "../resources/Sprites/Unit/archer.png",
+		    anim_set_preset );
+
+    Unit* soldier1 = UnitFactory::create( "Kim", 
+		    UnitSize::Small, 
+		    "../resources/Sprites/Unit/soldier.png",
+		    anim_set_preset );
 
     units.push_back( wizard1 );
     units.push_back( archer1 );

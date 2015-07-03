@@ -15,7 +15,11 @@ class AnimationSet
     public:
 
         AnimationSet() {}
+
+	/// Gets animation from available set. Returns Animation::None if not found.
         Animation& getAnimation( const std::string& name, Orientation orientation );
+
+	/// Adds animation to available set
         int addAnimation( const Animation& animation, Orientation orientation );
 
     protected:

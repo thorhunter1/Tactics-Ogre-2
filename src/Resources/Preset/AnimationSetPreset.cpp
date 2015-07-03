@@ -1,8 +1,18 @@
 #include "Resources/Preset/AnimationSetPreset.hpp"
 
+#include "Utils/Resources/AnimationSetParser.hpp"
+
 int AnimationSetPreset::load( const std::string& presetPath )
 {
 	//dummy for now
+	
+	int ret = 0;
+
+	animationSet_ = Parser::AnimationSetParser::parse( presetPath );
+
+	if( animationSet_ == AnimationSet::None ) ret = -1;
+
+	TraceReturn( ret, "Couldn't load preset" );
 	
 	Animation walk_S    = Animation( "walk",    {0,1,0,2}       );
 	Animation stand_S   = Animation( "stand",   {0}             );
