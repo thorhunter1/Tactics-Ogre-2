@@ -13,11 +13,23 @@ Animation::Animation( const std::string& name, const AnimationFrameList& list )
 
 AnimationFrame Animation::getCurrentFrame() const
 {
+	if( frameList_.empty() ) 
+	{
+		Error( "Frame list is empty" );
+		return 0;
+	}
+
     return frameList_[iCurrentFrame_];
 }
 
 AnimationFrame Animation::popFrame()
 {
+	if( frameList_.empty() ) 
+	{
+		Error( "Frame list is empty" );
+		return 0;
+	}
+
     AnimationFrame tmp_frame = frameList_[iCurrentFrame_];
 
     if( iCurrentFrame_ != frameList_.size() ) ++iCurrentFrame_;

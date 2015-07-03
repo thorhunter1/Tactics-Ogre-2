@@ -4,7 +4,7 @@
 
 const AnimationSet AnimationSet::None = AnimationSet();
 
-Animation& AnimationSet::getAnimation( const std::string& name, Orientation orientation )
+Animation AnimationSet::getAnimation( const std::string& name, Orientation orientation )
 {
     if(     animationSet_.find( name )              != animationSet_.end() &&
             animationSet_[name].find( orientation ) != animationSet_[name].end() )
@@ -15,9 +15,8 @@ Animation& AnimationSet::getAnimation( const std::string& name, Orientation orie
     {
         Error( "Couldn't find animation: " << name );
 
-        //TODO:
-        //Animation empty_animation = Animation::None;
-        //return empty_animation;
+        Animation empty_animation = Animation::None;
+        return empty_animation;
     }
 
 }
