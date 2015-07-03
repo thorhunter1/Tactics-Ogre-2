@@ -1,5 +1,6 @@
 #include "Factory/UnitFactory.hpp"
 #include "Resources/Preset/SpritePreset/UnitSpritePreset/SmallUnitSpritePreset.hpp"
+#include "Resources/Preset/SpritePreset/UnitSpritePreset/SmallUnitSpritePreset2.hpp"
 
 Unit* UnitFactory::create( const std::string& name, UnitSize size, const std::string& spritePresetPath, const std::string& animationSetPresetPath )
 {
@@ -7,6 +8,8 @@ Unit* UnitFactory::create( const std::string& name, UnitSize size, const std::st
 
 	if( size == UnitSize::Small )
 		new_unit->spritePreset_ = new SmallUnitSpritePreset();
+    if( size == UnitSize::Small2 )
+		new_unit->spritePreset_ = new SmallUnitSpritePreset2();
 
 	// Set general unit info
 	new_unit->info.ID = UnitFactory::getInst().unitCount_++;

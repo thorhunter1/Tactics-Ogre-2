@@ -1,7 +1,9 @@
 #ifndef UNIT_ENUM_HPP
 #define UNIT_ENUM_HPP
 
-enum class UnitSize { 	Small, 
+enum class UnitSize { 	
+            Small,
+            Small2,
 			Large 
 };
 

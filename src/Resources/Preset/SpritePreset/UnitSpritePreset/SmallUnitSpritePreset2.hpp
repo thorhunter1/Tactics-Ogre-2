@@ -1,5 +1,5 @@
-#ifndef SMALL_UNIT_SPRITE_PRESET_HPP
-#define SMALL_UNIT_SPRITE_PRESET_HPP
+#ifndef SMALL_UNIT_SPRITE_PRESET2_HPP
+#define SMALL_UNIT_SPRITE_PRESET2_HPP
 
 #include <string>
 
@@ -10,7 +10,7 @@ class SmallUnitSpritePreset2 : public UnitSpritePreset
 {
     public:
 	
-	SmallUnitSpritePreset() {}
+	    SmallUnitSpritePreset2() {}
         virtual sf::Sprite getSprite( unsigned int frameID );
 
     protected:
@@ -22,4 +22,4 @@ class SmallUnitSpritePreset2 : public UnitSpritePreset
         static const int spriteVerticalCount_     = 4;
 };
 
-#endif //SMALL_UNIT_SPRITE_PRESET_HPP
+#endif //SMALL_UNIT_SPRITE_PRESET2_HPP

@@ -27,7 +27,7 @@ void print_intro()
 {
 	std::cout << "******************************" << std::endl;
 	std::cout << "*  Unit animation prototype  *" << std::endl;
-	std::cout << "*        v.0.0.1             *" << std::endl;
+	std::cout << "*        v.0.1.0             *" << std::endl;
 	std::cout << "******************************" << std::endl;
 	std::cout << std::endl;
 }
@@ -128,6 +128,8 @@ void cmd_init()
 }
 
 std::string anim_set_preset( "../resources/AnimationSets/Unit/smallunit.json" );
+std::string anim_set_preset2( "../resources/AnimationSets/Unit/smallunit2.json" );
+
 int main()
 {
 
@@ -157,10 +159,18 @@ int main()
 			"../resources/Sprites/Unit/soldier.png",
 			anim_set_preset );
 
+	Unit* archer2 = UnitFactory::create( "Luna", 
+			UnitSize::Small2, 
+			"../resources/Sprites/Unit/archer_2.0.png",
+			anim_set_preset2 );
+
+
+
 	units.push_back( wizard1 );
 	units.push_back( archer1 );
 	units.push_back( amazon1 );
 	units.push_back( soldier1 );
+	units.push_back( archer2 );
 
 	for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -181,6 +191,7 @@ int main()
 		Renderer::render( archer1, 200, 25 );
 		Renderer::render( amazon1, 300, 25 );
 		Renderer::render( soldier1, 400, 25 );
+        Renderer::render( archer2, 500, 25 );
 
 		Renderer::clear();
 

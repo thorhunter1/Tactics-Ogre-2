@@ -1,0 +1,22 @@
+{
+"animation_set" : [
+	{ "name" : "walk", 	
+		"south" : [0, 1, 0, 2],			
+		"north" : [11, 12, 11, 13] },
+	{ "name" : "stand",	
+		"south" : [0],				
+		"north" : [11] },
+	{ "name" : "petrify", 	
+		"south" : [4],	 		
+		"north" : [15] },
+	{ "name" : "cast", 	
+		"south" : [0, 5, 6 ],
+		"north" : [11, 16, 17] }, 
+    { "name" : "stun",
+        "south" : [10,21],
+        "north" : [10,21] },
+    { "name" : "stand_water",
+        "south" : [22],
+        "north" : [33] }
+	]
+}
