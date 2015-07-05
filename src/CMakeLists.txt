@@ -4,6 +4,7 @@ add_subdirectory( Animation )
 add_subdirectory( Unit )
 add_subdirectory( Graphics )
 add_subdirectory( Factory )
+add_subdirectory( Isometry )
 
 set(SOURCE
    ${SOURCE}

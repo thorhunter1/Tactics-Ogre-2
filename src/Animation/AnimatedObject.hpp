@@ -9,7 +9,7 @@
 #include "Animation/AnimationSet.hpp"
 #include "Animation/Animation.hpp"
 
-class AnimatedObject : public RenderableObject
+class AnimatedObject : public virtual RenderableObject
 {
 	//TODO: get rid of this
 	friend class UnitFactory;

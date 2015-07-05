@@ -4,6 +4,7 @@
 #include "Resources/Preset/SpritePreset.hpp"
 #include "Resources/Preset/AnimationSetPreset.hpp"
 #include "Animation/AnimatedObject.hpp"
+#include "Isometry/IsometricObject.hpp"
 
 #include "Utils/Game/UnitEnum.hpp"
 
@@ -22,7 +23,7 @@ struct UnitStatus
 	UnitSize			size;
 };
 
-class Unit : public AnimatedObject
+class Unit : public AnimatedObject, public IsometricObject
 {
 	friend class UnitFactory;
 
