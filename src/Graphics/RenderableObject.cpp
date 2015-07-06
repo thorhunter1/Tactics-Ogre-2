@@ -20,6 +20,12 @@ sf::Sprite RenderableObject::getRenderSprite()
     return renderSprite_;
 }
 
+sf::Sprite RenderableObject::d_getTextureSprite()
+{
+	sf::Sprite tmp_sprite( renderTexture_ );
+	return tmp_sprite;
+}
+
 int RenderableObject::updateTexture()
 {
     fUpdateTexture_ = false;
@@ -30,6 +36,11 @@ int RenderableObject::updateTexture( const sf::Image& image )
 {
     fUpdateTexture_ = false;
     renderTexture_.loadFromImage( image );
+}
+
+int RenderableObject::updateTexture( const sf::Uint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y )
+{
+	renderTexture_.update( pixels, width, height, x, y );
 }
 
 int RenderableObject::bindRenderImage( const sf::Image& image )

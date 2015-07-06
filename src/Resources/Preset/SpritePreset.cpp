@@ -43,6 +43,23 @@ int SpritePreset::unload()
     TraceReturn( ret, "Unload of spriteImage_ failed" );
 }
 
+sf::Sprite SpritePreset::getSprite()
+{
+
+	sf::Sprite tmp_sprite = sf::Sprite();
+	if( spriteImage_ == NULL )
+	{
+		Warning( "No image loaded" );
+		return tmp_sprite;
+	}
+
+	sf::IntRect tmp_rect = sf::IntRect( 0, 0, spriteImage_->getSize().x, spriteImage_->getSize().y );
+	tmp_sprite.setTextureRect( tmp_rect );
+
+	return tmp_sprite;
+
+}
+
 sf::Image* SpritePreset::getImage()
 {
     return spriteImage_;

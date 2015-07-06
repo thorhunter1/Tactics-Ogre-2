@@ -8,5 +8,6 @@ set(HEADERS
    ${HEADERS}
    ${CMAKE_CURRENT_SOURCE_DIR}/SpriteUtils.hpp
    ${CMAKE_CURRENT_SOURCE_DIR}/ImageUtils.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/TextureUtils.hpp
    PARENT_SCOPE
 )

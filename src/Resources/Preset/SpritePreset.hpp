@@ -31,6 +31,9 @@ class SpritePreset : public Preset
          */
         virtual sf::Sprite getSprite( unsigned int frameID ) {}
 
+	///Returns sprite of whole trxture
+	virtual sf::Sprite getSprite();
+
         /// Returns handle to image resource
         sf::Image* getImage();
 

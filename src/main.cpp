@@ -12,6 +12,7 @@
 #include "Factory/UnitFactory.hpp"
 
 #include "Utils/Resources/AnimationSetParser.hpp"
+#include "Utils/Graphics/TextureUtils.hpp"
 
 #include "SFML.hpp"
 
@@ -187,15 +188,17 @@ int main()
 
 	while( true ) 
 	{
+		Graphics::dissolve( wizard1 );
 		Renderer::render( wizard1, 100, 25 );
-		Renderer::render( archer1, 200, 25 );
-		Renderer::render( amazon1, 300, 25 );
-		Renderer::render( soldier1, 400, 25 );
-        Renderer::render( archer2, 500, 25 );
+		Renderer::d_render( wizard1, 100, 225 );
+		//Renderer::render( archer1, 200, 25 );
+		//Renderer::render( amazon1, 300, 25 );
+		//Renderer::render( soldier1, 400, 25 );
+        	//Renderer::render( archer2, 500, 25 );
 
 		Renderer::clear();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(33));
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 
 
