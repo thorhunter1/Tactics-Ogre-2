@@ -8,5 +8,6 @@ set(SOURCE
 set(HEADERS
    ${HEADERS}
    ${CMAKE_CURRENT_SOURCE_DIR}/AnimationSetParser.hpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/TilesetEnum.hpp
    PARENT_SCOPE
 )
