@@ -10,6 +10,7 @@
 #include "Graphics/Renderer.hpp"
 
 #include "Factory/UnitFactory.hpp"
+#include "Factory/TileFactory.hpp"
 
 #include "Utils/Resources/AnimationSetParser.hpp"
 #include "Utils/Graphics/TextureUtils.hpp"
@@ -23,6 +24,7 @@
 
 std::string command;
 std::vector< Unit* > units;
+std::vector< IsometricTile* > tiles;
 int unit_index = 0;
 bool loop = true;
 
@@ -167,13 +169,14 @@ int main()
 			"../resources/Sprites/Unit/archer_2.0.png",
 			anim_set_preset2 );
 
-
-
 	units.push_back( wizard1 );
 	units.push_back( archer1 );
 	units.push_back( amazon1 );
 	units.push_back( soldier1 );
 	units.push_back( archer2 );
+
+
+    IsometricTile* tile1 = TileFactory::create( "dirt" );
 
 	for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -190,14 +193,16 @@ int main()
 
 	while( true ) 
 	{
-		Renderer::render_tile();
-		//Graphics::dissolve( wizard1 );
+        for( int i = 0; i < 5; ++i )
+            for( int j = 0 ; j < 5; ++j )
+                Renderer::render( tile1, 300 + (i * 32) - (j * 32) , 50 + (i * 16) + (j * 16) );
+
+
 		Renderer::render( wizard1, 100, 25 );
-		//Renderer::d_render( wizard1, 100, 225 );
 		Renderer::render( archer1, 200, 25 );
 		Renderer::render( amazon1, 300, 25 );
 		Renderer::render( soldier1, 400, 25 );
-        	Renderer::render( archer2, 500, 25 );
+        Renderer::render( archer2, 500, 25 );
 
 		Renderer::clear();
 

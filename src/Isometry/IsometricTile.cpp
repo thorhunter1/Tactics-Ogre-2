@@ -1,18 +1,24 @@
 #include "Isometry/IsometricTile.hpp"
 
+IsometricTile::IsometricTile()
+{
+    rendObjects_[Orientation::North] = RenderableObject();
+    rendObjects_[Orientation::South] = RenderableObject();
+    rendObjects_[Orientation::West] = RenderableObject();
+    rendObjects_[Orientation::East] = RenderableObject();
+}
 
 int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
 {
 	tilePreset_ = preset;
-	tilePreset_->load();
-
-	auto xaxa = rendObjects_;
+	//tilePreset_->load();
 
 	auto iter = rendObjects_.begin();
 
 	while( iter != rendObjects_.end() )
 	{
 		RenderableObject& rend_obj = iter->second;
+        Debug( preset->getImage()->getSize().x );
 		rend_obj.bindRenderImage( *preset->getImage() );
 		rend_obj.updateTexture();
 

@@ -10,6 +10,9 @@
 class IsometricTile : public IsometricObject
 {
 	public:
+
+        IsometricTile();
+
 		int setTilePreset( TilesetSpritePreset* preset );
 		int setCliffPreset( /*const CliffSpritePreset& preset*/ ) {}
 

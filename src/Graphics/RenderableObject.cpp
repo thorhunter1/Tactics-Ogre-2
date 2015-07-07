@@ -23,6 +23,7 @@ sf::Sprite RenderableObject::getRenderSprite()
 int RenderableObject::setRenderSprite( const sf::Sprite& sprite )
 {
 	renderSprite_ = sprite;
+    renderSprite_.setTexture( renderTexture_ );
 }
 
 sf::Sprite RenderableObject::d_getTextureSprite()

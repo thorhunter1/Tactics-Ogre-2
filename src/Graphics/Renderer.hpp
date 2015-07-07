@@ -2,6 +2,8 @@
 #define RENDERER_HPP
 
 #include "Graphics/RenderableObject.hpp"
+#include "Isometry/IsometricTile.hpp"
+
 #include "SFML.hpp"
 
 class Renderer
@@ -10,7 +12,7 @@ class Renderer
         
         static int init();
         static int render( RenderableObject* obj, int x, int y);
-	static int render_tile();
+	    static int render( IsometricTile* tile, int x, int y );
         static int d_render( RenderableObject* obj, int x, int y);
         static int clear();
 
