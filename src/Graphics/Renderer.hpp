@@ -10,6 +10,7 @@ class Renderer
         
         static int init();
         static int render( RenderableObject* obj, int x, int y);
+	static int render_tile();
         static int d_render( RenderableObject* obj, int x, int y);
         static int clear();
 

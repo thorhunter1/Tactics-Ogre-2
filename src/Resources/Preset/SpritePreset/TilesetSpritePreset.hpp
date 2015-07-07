@@ -15,10 +15,10 @@ class TilesetSpritePreset : public SpritePreset
     public:
 
         virtual sf::Sprite getSprite( unsigned int frameID ) {}
-	virtual sf::Sprite getSprite( 	Tileset::Type type, 
-					Tileset::Cliff cliff, 
+	virtual sf::Sprite getSprite(	Tileset::Cliff cliff, 
 					Orientation orient, 
-					Tileset::Weight weight ) {} 
+					Tileset::Weight weight,
+		       			Tileset::CliffType cliffType = Tileset::CliffType::Smooth ) {} 
 };
 
 #endif //TILESET_SPRITE_PRESET_HPP

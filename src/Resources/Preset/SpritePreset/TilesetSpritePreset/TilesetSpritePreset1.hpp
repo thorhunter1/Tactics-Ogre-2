@@ -5,6 +5,7 @@
 
 #include "SFML.hpp"
 #include "Resources/Preset/SpritePreset/TilesetSpritePreset.hpp"
+#include "Utils/Resources/TilesetEnum.hpp"
 
 class TilesetSpritePreset1 : public TilesetSpritePreset
 {
@@ -12,18 +13,18 @@ class TilesetSpritePreset1 : public TilesetSpritePreset
 	
 	TilesetSpritePreset1() {}
         virtual sf::Sprite getSprite( unsigned int frameID );
-	virtual sf::Sprite getSprite( 	Tileset::Type type,
-					Tileset::Cliff cliff,
+	virtual sf::Sprite getSprite(	Tileset::Cliff cliff,
 					Orientation orient,
-					Tileset::Weight weight );
+					Tileset::Weight weight,
+		       			Tileset::CliffType cliffType = Tileset::CliffType::Smooth );
 
     protected:
 
         static const int frameWidth_    = 16;
         static const int frameHeight_   = 8;
 
-        static const int spriteHorizontalCount_   = 12;
-        static const int spriteVerticalCount_     = 11;
+        static const int spriteHorizontalCount_   = 10;
+        static const int spriteVerticalCount_     = 2;
 };
 
 #endif //TILESET1_SPRITE_PRESET_HPP

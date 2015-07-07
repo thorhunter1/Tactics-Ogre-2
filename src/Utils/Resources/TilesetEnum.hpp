@@ -4,7 +4,8 @@
 namespace Tileset
 {
 	enum class Type { Dirt, Grass, LongGrass };
-	enum class Cliff { Top, None, Bottom };
+	enum class Cliff { Top, Bottom, None };
+	enum class CliffType { Smooth, Rugged };
 	enum class Weight { Small, Medium, Large };
 }
 
