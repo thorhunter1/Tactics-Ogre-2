@@ -19,6 +19,9 @@ class RenderableObject
         /// Gets current sprite to render
         sf::Sprite getRenderSprite();
 
+	/// Sets current sprite to render
+	int setRenderSprite( const sf::Sprite& sprite );
+
 	/// Gets sprite of whole texture
 	sf::Sprite d_getTextureSprite();
 
@@ -31,10 +34,10 @@ class RenderableObject
 	/// Updates renderTexture_ with array of pixels
 	int updateTexture( const sf::Uint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y );
 
-    protected:
-
         /// Binds renderImage_ to external image
         virtual int bindRenderImage( const sf::Image& image );
+
+    protected:
 
         sf::Image   renderImage_;
         sf::Texture renderTexture_;

@@ -14,6 +14,8 @@
 #include "Utils/Resources/AnimationSetParser.hpp"
 #include "Utils/Graphics/TextureUtils.hpp"
 
+#include "Isometry/IsometricTile.hpp"
+
 #include "SFML.hpp"
 
 #include <thread>

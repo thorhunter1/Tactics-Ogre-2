@@ -6,6 +6,8 @@
 
 #include "Resources/Preset/SpritePreset/TilesetSpritePreset/TilesetSpritePreset1.hpp"
 
+#include "Isometry/IsometricTile.hpp"
+
 sf::RenderWindow Renderer::window_;
 
 int Renderer::init()
@@ -35,9 +37,21 @@ int Renderer::render_tile()
 {
 	const int offset = 16;
 
-	TilesetSpritePreset* preset = new TilesetSpritePreset1();
-	preset->load( "../resources/Sprites/Tileset/long_grass.png" );
+	static TilesetSpritePreset* preset = new TilesetSpritePreset1();
+	static int once = 1;
 
+	if( once == 1 )
+	{
+		once = 0;
+		preset->load( "../resources/Sprites/Tileset/long_grass.png" );
+	}
+
+	IsometricTile tile;
+	tile.setTilePreset( preset );
+	tile.setCliff( Tileset::Cliff::None );
+	tile.setWeight( Tileset::Weight::Medium );
+
+	/*
 	sf::Sprite sprite1 = preset->getSprite( 
 			Tileset::Cliff::None, Orientation::North, Tileset::Weight::Large );
 	sf::Sprite sprite2 = preset->getSprite( 
@@ -46,7 +60,8 @@ int Renderer::render_tile()
 			Tileset::Cliff::None, Orientation::West, Tileset::Weight::Large );
 	sf::Sprite sprite4 = preset->getSprite( 
 			Tileset::Cliff::None, Orientation::East, Tileset::Weight::Large );
-	
+	*/
+
 	sf::Texture tex;
 	tex.loadFromImage( *preset->getImage() );
 
@@ -70,9 +85,8 @@ int Renderer::render_tile()
 	window_.draw( sprite2 );
 	window_.draw( sprite3 );
 	window_.draw( sprite4 );
-
-	delete preset;
 }
+
 int Renderer::d_render( RenderableObject* obj, int x, int y )
 {
 	sf::Sprite sprite = obj->d_getTextureSprite();

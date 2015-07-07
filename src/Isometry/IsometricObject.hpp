@@ -8,7 +8,7 @@ struct Coordinates
     float z;
 };
 
-class IsometricObject : public virtual RenderableObject
+class IsometricObject
 {
     public:
 
