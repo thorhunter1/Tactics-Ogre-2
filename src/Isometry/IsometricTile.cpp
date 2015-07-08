@@ -18,7 +18,6 @@ int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
 	while( iter != rendObjects_.end() )
 	{
 		RenderableObject& rend_obj = iter->second;
-        Debug( preset->getImage()->getSize().x );
 		rend_obj.bindRenderImage( *preset->getImage() );
 		rend_obj.updateTexture();
 

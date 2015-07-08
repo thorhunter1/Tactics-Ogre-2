@@ -95,18 +95,19 @@ void AnimatedObject::_runAnimation()
 		AnimationFrame tmp_frame = currentAnimation_.popFrame();
 
 		sf::Sprite tmp_sprite = sPreset_->getSprite( tmp_frame );
-		renderSprite_.setTextureRect( tmp_sprite.getTextureRect() );
 
 		if( orientation_ == Orientation::East || orientation_ == Orientation::West )
 		{
-			Graphics::flipX( renderSprite_ );
+			Graphics::flipX( tmp_sprite );
 		}
+
+		setRenderSprite( tmp_sprite );
 
 		if( currentAnimation_.isFinished() ) break;
 
 		using std::chrono::milliseconds;
 		std::this_thread::sleep_for( 
-				milliseconds( int( AnimatedObject::animationSpeedConstant_ * animationSpeed_ * 1000) ) 
+				milliseconds( int( AnimatedObject::animationSpeedConstant_ * animationSpeed_ * 1000 ) ) 
 				);
 	}
 	stopAnimation();

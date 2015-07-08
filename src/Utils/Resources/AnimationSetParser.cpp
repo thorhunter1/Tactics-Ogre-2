@@ -28,22 +28,18 @@ namespace Parser
 
 			while( iter != animation_set.end() )
 			{
-				Debug( "here2" );
 				Json::Value anim = (*iter);
 				++iter;
 
 				std::string name = anim["name"].asString();
-				Debug( name );
 
 				//Parse through south frames
 				AnimationFrameList frame_list;
 				Json::Value south = anim["south"];
-				Debug( south );
 				Json::Value::iterator south_iter = south.begin();
 				while( south_iter != south.end() )
 				{
 					int frame = (*south_iter).asInt();
-					Debug( frame );
 					frame_list.push_back( frame );
 					++south_iter;
 				}

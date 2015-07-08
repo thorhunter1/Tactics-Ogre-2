@@ -195,14 +195,13 @@ int main()
 	{
         for( int i = 0; i < 5; ++i )
             for( int j = 0 ; j < 5; ++j )
-                Renderer::render( tile1, 300 + (i * 32) - (j * 32) , 50 + (i * 16) + (j * 16) );
-
+                Renderer::render( tile1, 300 + (i * 32) - (j * 32) , 50 + (i * 16) + (j * 16), 0 );
 
 		Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );
 		Renderer::render( amazon1, 300, 25 );
 		Renderer::render( soldier1, 400, 25 );
-        Renderer::render( archer2, 500, 25 );
+        	Renderer::render( archer2, 500, 25 );
 
 		Renderer::clear();
 

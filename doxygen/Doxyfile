@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = /home/grzegorz/workspace/projects/tactics_ogre2/doxygen
+OUTPUT_DIRECTORY       = /home/nmiworker/workspace/personal_projects/Tactics-Ogre-2/doxygen
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -753,7 +753,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = /home/grzegorz/workspace/projects/tactics_ogre2/src
+INPUT                  = /home/nmiworker/workspace/personal_projects/Tactics-Ogre-2/src
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -882,7 +882,7 @@ EXAMPLE_RECURSIVE      = NO
 # that contain images that are to be included in the documentation (see the
 # \image command).
 
-IMAGE_PATH             = /home/grzegorz/workspace/projects/tactics_ogre2/doxygen/resources 
+IMAGE_PATH             = /home/nmiworker/workspace/personal_projects/Tactics-Ogre-2/doxygen/resources 
 
 # The INPUT_FILTER tag can be used to specify a program that doxygen should
 # invoke to filter for each input file. Doxygen will invoke the filter program

@@ -13,26 +13,22 @@ class RenderableObject
         
         RenderableObject();
 
-        /// Sets teamcolor
-        int setTeamColor( TeamColor color );
+        /// Team Color
+        int 		setTeamColor( TeamColor color );
+	TeamColor 	getTeamColor();
 
-        /// Gets current sprite to render
-        sf::Sprite getRenderSprite();
+        /// Sprite
+	int 		setRenderSprite( const sf::Sprite& sprite );
+        sf::Sprite 	getRenderSprite();
 
-	/// Sets current sprite to render
-	int setRenderSprite( const sf::Sprite& sprite );
-
-	/// Gets sprite of whole texture
-	sf::Sprite d_getTextureSprite();
-
-        /// Updates renderTexture_ from renderImage_
-        int updateTexture();
-
-        /// Updates renderTexture_ from external source
-        int updateTexture( const sf::Image& image );
-
-	/// Updates renderTexture_ with array of pixels
-	int updateTexture( const sf::Uint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y );
+        /// Updates texture
+        int updateTexture(); 				//from renderImage_
+        int updateTexture( const sf::Image& image );	//from image
+	int updateTexture( const sf::Uint8* pixels, 	//from pixel array
+			unsigned int width, 
+			unsigned int height, 
+			unsigned int x, 
+			unsigned int y );
 
         /// Binds renderImage_ to external image
         virtual int bindRenderImage( const sf::Image& image );

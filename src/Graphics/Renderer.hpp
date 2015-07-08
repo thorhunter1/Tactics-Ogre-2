@@ -12,13 +12,20 @@ class Renderer
         
         static int init();
         static int render( RenderableObject* obj, int x, int y);
-	    static int render( IsometricTile* tile, int x, int y );
-        static int d_render( RenderableObject* obj, int x, int y);
+	static int render( IsometricTile* tile, int off_x, int off_y, int off_z );
         static int clear();
 
-    private:
+    protected:
 
-        static sf::RenderWindow window_;
+	static inline Renderer& getInstance() { static Renderer r; return r; }
+	
+	virtual int _init();
+	virtual int _render( RenderableObject* obj, int x, int y );
+	virtual int _render( IsometricTile* tile, int off_x, int off_y, int off_z );
+	virtual int _clear();
+
+        sf::RenderWindow window_;
+	std::vector< sf::RenderTexture > textureLayers_;
 };
 
 #endif //RENDERER_HPP
