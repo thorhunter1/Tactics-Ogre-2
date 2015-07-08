@@ -12,7 +12,7 @@ class Renderer
         
         static int init();
         static int render( RenderableObject* obj, int x, int y);
-	static int render( IsometricTile* tile, int off_x, int off_y, int off_z );
+	static int render( IsometricTile* tile, int off_x = 0, int off_y = 0, int off_z = 0 );
         static int clear();
 
     protected:
@@ -26,6 +26,11 @@ class Renderer
 
         sf::RenderWindow window_;
 	std::vector< sf::RenderTexture > textureLayers_;
+
+	int baseX_;
+	int baseY_;
+
+	int dist_;
 };
 
 #endif //RENDERER_HPP

@@ -175,8 +175,10 @@ int main()
 	units.push_back( soldier1 );
 	units.push_back( archer2 );
 
-
-    IsometricTile* tile1 = TileFactory::create( "dirt" );
+	TileFactory::load();
+	IsometricTile* tile1 = TileFactory::create( "grass" );
+	IsometricTile* tile2 = TileFactory::create( "dirt" );
+	IsometricTile* tile3 = TileFactory::create( "long_grass" );
 
 	for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -193,15 +195,59 @@ int main()
 
 	while( true ) 
 	{
-        for( int i = 0; i < 5; ++i )
-            for( int j = 0 ; j < 5; ++j )
-                Renderer::render( tile1, 300 + (i * 32) - (j * 32) , 50 + (i * 16) + (j * 16), 0 );
+
+		for( int i = 0; i < 5; ++i )
+		{
+			for( int j = 0 ; j < 5; ++j )
+			{
+				tile2->coordinates.x = i;
+				tile2->coordinates.y = j;
+				tile2->setCliff( Tileset::Cliff::None );
+				tile2->setCliffType( Tileset::CliffType::Rugged );
+				if( j == 0 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::South );
+				if( j == 4 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::North );
+				if( i == 0 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::West );
+				if( i == 4 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::East );
+
+				Renderer::render( tile2, 200, 200 );
+			}
+		}
+
+		for( int i = 1; i < 4; ++i )
+		{
+			for( int j = 1; j < 4; ++j )
+			{
+				tile1->setWeight( Tileset::Weight::Medium );
+				tile1->coordinates.x = i;
+				tile1->coordinates.y = j;
+
+				Tileset::Weight weight = Tileset::Weight::Small;
+				int w = (i+j) % 2;
+				if( w == 0 ) weight = Tileset::Weight::Large;
+				
+				if( j == 1 ) tile1->setWeight( weight, Orientation::South );
+				if( j == 3 ) tile1->setWeight( weight, Orientation::North );
+				if( i == 1 ) tile1->setWeight( weight, Orientation::West );
+				if( i == 3 ) tile1->setWeight( weight, Orientation::East );
+				Renderer::render( tile1, 200, 200 );
+			}
+		}
+
+		tile3->setWeight( Tileset::Weight::Large );
+		tile3->coordinates.x = 2;
+		tile3->coordinates.y = 2;
+		Renderer::render( tile3, 200, 200 );
+
+		TileFactory::updateTileType( tile2, "long_grass" );
+		tile2->coordinates.x = 2;
+		tile2->coordinates.y = 1;
+		Renderer::render( tile2, 200, 200 );
 
 		Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );
 		Renderer::render( amazon1, 300, 25 );
 		Renderer::render( soldier1, 400, 25 );
-        	Renderer::render( archer2, 500, 25 );
+		Renderer::render( archer2, 500, 25 );
 
 		Renderer::clear();
 

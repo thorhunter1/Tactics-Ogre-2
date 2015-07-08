@@ -10,13 +10,21 @@ class TileFactory
 		static IsometricTile* get( unsigned int ID );
 		static int remove( unsigned int ID );
 		static int remove( IsometricTile* tile );
+		static int updateTileType( IsometricTile* tile, const std::string& type );
+
+		static int load();
 
 	protected:
-		static inline TileFactory& getInst() { static TileFactory f; return f; }
+		TileFactory();
+		static inline TileFactory& getInstance() { static TileFactory f; return f; }
 
 	private:
 		unsigned int TileCount_ = 0;
 		std::vector< IsometricTile* > managedTiles_;
+
+		TilesetSpritePreset* grassPreset_;
+		TilesetSpritePreset* dirtPreset_;
+		TilesetSpritePreset* longGrassPreset_;
 };
 
 #endif //TILE_FACTORY_HPP

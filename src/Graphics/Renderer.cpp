@@ -62,17 +62,38 @@ int Renderer::_render( IsometricTile* tile, int off_x, int off_y, int off_z )
 	sf::Sprite sprite3 = tile->getRenderTileSprite( Orientation::West );
 	sf::Sprite sprite4 = tile->getRenderTileSprite( Orientation::East );
 
-	sprite1.setPosition( off_x - 2 * offset, off_y - offset );
+	//  N     .      E
+	//    .   |   .  
+	// ._____1|4_____.
+	//  ` .  3|2  . `
+	//       .|.     
+	//  W     `  	 s
+	
+	#define X_ISOMETRIC_COEFF 2 * offset * (tile->coordinates.x - tile->coordinates.y)
+	#define Y_ISOMETRIC_COEFF -offset * (tile->coordinates.x + tile->coordinates.y + tile->coordinates.z)
+
+	int x_coeff = -2 * offset;
+	int y_coeff = -offset;
+	sprite1.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
 	sprite1.setScale( 2, 2 );
 
-	sprite2.setPosition( off_x, off_y );
+	x_coeff = 0;
+	y_coeff = 0;
+	sprite2.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
 	sprite2.setScale( 2, 2 );
 
-	sprite3.setPosition( off_x - 2 * offset, off_y );
+	x_coeff = -2 * offset;
+	y_coeff = 0;
+	sprite3.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
 	sprite3.setScale( 2, 2 );
 
-	sprite4.setPosition( off_x, off_y - offset );
+	x_coeff = 0;
+	y_coeff = -offset;
+	sprite4.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
 	sprite4.setScale( 2, 2 );
+
+	#undef X_ISOMETRIC_COEFF
+	#undef Y_ISOMETRIC_COEFF
 
 	window_.draw( sprite1 );
 	window_.draw( sprite2 );
