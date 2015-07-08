@@ -1,10 +1,10 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
-#include "Graphics/RenderableObject.hpp"
-#include "Isometry/IsometricTile.hpp"
-
 #include "SFML.hpp"
+
+class IsometricTile;
+class RenderableObject;
 
 class Renderer
 {
@@ -12,7 +12,7 @@ class Renderer
         
         static int init();
         static int render( RenderableObject* obj, int x, int y);
-	static int render( IsometricTile* tile, int off_x = 0, int off_y = 0, int off_z = 0 );
+	    static int render( IsometricTile* tile, int off_x = 0, int off_y = 0, int off_z = 0 );
         static int clear();
 
     protected:
@@ -24,7 +24,7 @@ class Renderer
 	virtual int _render( IsometricTile* tile, int off_x, int off_y, int off_z );
 	virtual int _clear();
 
-        sf::RenderWindow window_;
+    sf::RenderWindow window_;
 	std::vector< sf::RenderTexture > textureLayers_;
 
 	int baseX_;

@@ -4,10 +4,12 @@
 #include <thread>
 #include <mutex>
 
-#include "Graphics/RenderableObject.hpp"
-#include "Resources/Preset/SpritePreset.hpp"
 #include "Animation/AnimationSet.hpp"
 #include "Animation/Animation.hpp"
+
+class RenderableObject;
+class SpritePreset;
+
 
 class AnimatedObject : public virtual RenderableObject
 {

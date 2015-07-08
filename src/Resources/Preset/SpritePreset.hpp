@@ -4,9 +4,9 @@
 #include <string>
 
 #include "SFML.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Utils.hh"
 
-#include "Resources/Preset.hpp"
+class Preset;
 
 class SpritePreset : public Preset
 {

@@ -1,6 +1,5 @@
 #include "RenderableObject.hpp"
 
-
 RenderableObject::RenderableObject()
 {
     renderSprite_.setTexture( renderTexture_ );

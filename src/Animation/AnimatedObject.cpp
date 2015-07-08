@@ -5,6 +5,8 @@
 #include "Utils/Debug/DebugUtils.hpp"
 #include "Utils/Graphics/SpriteUtils.hpp"
 
+#include "Graphics.hpp"
+
 #include "SFML.hpp"
 
 float AnimatedObject::animationSpeedConstant_ = 0.0025;

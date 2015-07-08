@@ -3,12 +3,9 @@
 
 #include <string>
 
-#include "Utils/Debug/DebugUtils.hpp"
-#include "Utils/Resources/TilesetEnum.hpp"
-#include "Utils/Game/OrientationEnum.hpp"
+#include "Utils.hh"
 
-#include "Resources/Preset/SpritePreset.hpp"
-
+class SpritePreset;
 
 class TilesetSpritePreset : public SpritePreset
 {

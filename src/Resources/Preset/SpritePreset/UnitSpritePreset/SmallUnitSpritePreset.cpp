@@ -1,10 +1,9 @@
-//#include <>
+#include "SmallUnitSpritePreset.hpp"
+
 #include <iostream>
 
 #include "SFML.hpp"
-#include "SmallUnitSpritePreset.hpp"
-
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Utils.hh"
 
 sf::Sprite SmallUnitSpritePreset::getSprite( unsigned int frameID )
 {

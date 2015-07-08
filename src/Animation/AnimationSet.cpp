@@ -1,5 +1,4 @@
 #include "Animation/AnimationSet.hpp"
-
 #include "Utils/Debug/DebugUtils.hpp"
 
 const AnimationSet AnimationSet::None = AnimationSet();

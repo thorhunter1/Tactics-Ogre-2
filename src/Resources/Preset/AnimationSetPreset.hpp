@@ -4,10 +4,10 @@
 #include <string>
 
 #include "SFML.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
 
-#include "Resources/Preset.hpp"
-#include "Animation/AnimationSet.hpp"
+#include "Animation.hh"
+
+class Preset;
 
 class AnimationSetPreset : public Preset
 {

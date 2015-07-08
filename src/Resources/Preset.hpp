@@ -3,14 +3,12 @@
 
 #include <string>
 
-#include <Utils/Debug/DebugUtils.hpp>
-
 class Preset
 {
     public:
 
         /// Virtual method for loading a preset resource
-        virtual int load( const std::string& presetPath ) { presetPath_ = presetPath; }
+        virtual int load( const std::string& presetPath ) {}
 
 	///Virtual method for loading a preset with existing path
 	virtual int load() {}
@@ -19,7 +17,7 @@ class Preset
         virtual int unload() {}
 
 	/// Sets preset path without loading its resource
-	virtual int setPresetPath( const std::string& presetPath ) { presetPath_ = presetPath; }
+	virtual int setPresetPath( const std::string& presetPath ) {}
 
     protected:
 

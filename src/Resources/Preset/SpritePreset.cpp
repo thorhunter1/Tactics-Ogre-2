@@ -1,6 +1,6 @@
-#include "Resources/Preset/SpritePreset.hpp"
+#include "SpritePreset.hpp"
 
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Utils.hh"
 
 int SpritePreset::load()
 {
