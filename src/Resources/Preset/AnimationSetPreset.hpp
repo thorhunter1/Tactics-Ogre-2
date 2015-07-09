@@ -7,7 +7,7 @@
 
 #include "Animation.hh"
 
-class Preset;
+#include "../Preset.hpp"
 
 class AnimationSetPreset : public Preset
 {

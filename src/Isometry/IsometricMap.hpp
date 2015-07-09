@@ -1,6 +1,9 @@
 #ifndef ISOMETRIC_MAP_HPP
 #define ISOMETRIC_MAP_HPP
 
+class IsometricTile;
+class IsometricTileComposite;
+
 class IsometricMap
 {
 	public:
@@ -21,6 +24,6 @@ class IsometricMap
 		int z_;
 
 		std::map< int, std::map< int, std::map< int, IsometricTile* > > > tileMap_;
-}
+};
 
 #endif //ISOMETRIC_MAP_HPP

@@ -4,8 +4,9 @@
 #include <string>
 
 #include "SFML.hpp"
-#include "Resources/Preset/SpritePreset/TilesetSpritePreset.hpp"
-#include "Utils/Resources/TilesetEnum.hpp"
+#include "../TilesetSpritePreset.hpp"
+
+#include "Utils.hh"
 
 class TilesetSpritePreset1 : public TilesetSpritePreset
 {

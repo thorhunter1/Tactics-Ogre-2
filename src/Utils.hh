@@ -9,5 +9,5 @@
 #include "Utils/Graphics/SpriteUtils.hpp"
 #include "Utils/Graphics/TextureUtils.hpp"
 
-#include "Utils/Resources/AnimationParser.hpp"
+#include "Utils/Resources/AnimationSetParser.hpp"
 #include "Utils/Resources/TilesetEnum.hpp"

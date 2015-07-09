@@ -7,9 +7,9 @@
 #include "Animation/AnimationSet.hpp"
 #include "Animation/Animation.hpp"
 
-class RenderableObject;
-class SpritePreset;
+#include "Graphics.hh"
 
+class SpritePreset;
 
 class AnimatedObject : public virtual RenderableObject
 {

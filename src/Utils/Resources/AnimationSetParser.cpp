@@ -1,9 +1,10 @@
-#include "json/json.h"
-
-#include "Utils/Resources/AnimationSetParser.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
+#include "AnimationSetParser.hpp"
 
 #include <fstream>
+
+#include "json/json.h"
+
+#include "Utils.hh"
 
 namespace Parser
 {

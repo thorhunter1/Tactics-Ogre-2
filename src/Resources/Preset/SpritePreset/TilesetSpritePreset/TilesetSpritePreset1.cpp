@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "SFML.hpp"
-#include "Resources/Preset/SpritePreset/TilesetSpritePreset/TilesetSpritePreset1.hpp"
+#include "TilesetSpritePreset1.hpp"
 
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Utils.hh"
 
 sf::Sprite TilesetSpritePreset1::getSprite( unsigned int frameID )
 {

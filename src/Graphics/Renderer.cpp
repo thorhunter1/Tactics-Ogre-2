@@ -1,12 +1,11 @@
-#include "Utils/Graphics/ImageUtils.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Graphics/Renderer.hpp"
 
 #include "SFML.hpp"
 
-#include "Resources/Preset/SpritePreset/TilesetSpritePreset/TilesetSpritePreset1.hpp"
-
-#include "Graphics/Renderer.hpp"
-#include "Graphics/RenderableObject.hpp"
+#include "Utils.hh"
+#include "Resources.hh"
+#include "Graphics.hh"
+#include "Isometry.hh"
 
 int Renderer::init()
 {

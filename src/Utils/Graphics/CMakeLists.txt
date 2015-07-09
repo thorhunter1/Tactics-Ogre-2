@@ -2,6 +2,10 @@
 
 set(SOURCE
    ${SOURCE}
+   ${CMAKE_CURRENT_SOURCE_DIR}/SpriteUtils.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ImageUtils.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/TextureUtils.cpp
+   
    PARENT_SCOPE
 )
 set(HEADERS

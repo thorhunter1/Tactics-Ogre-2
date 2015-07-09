@@ -1,6 +1,6 @@
 
-#include "Animation/Animation.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
+#include "Animation.hpp"
+#include "Utils.hh"
 
 const Animation Animation::None = Animation( "none", AnimationFrameList() );
 

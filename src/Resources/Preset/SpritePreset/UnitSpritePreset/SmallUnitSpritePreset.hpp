@@ -5,7 +5,7 @@
 
 #include "SFML.hpp"
 
-class UnitsSpritePreset;
+#include "../UnitSpritePreset.hpp"
 
 class SmallUnitSpritePreset : public UnitSpritePreset
 {

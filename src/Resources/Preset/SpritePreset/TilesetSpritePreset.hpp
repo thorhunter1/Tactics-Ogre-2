@@ -5,7 +5,7 @@
 
 #include "Utils.hh"
 
-class SpritePreset;
+#include "../SpritePreset.hpp"
 
 class TilesetSpritePreset : public SpritePreset
 {

@@ -3,7 +3,7 @@
 
 #include <string>
 
-class SpritePreset;
+#include "../SpritePreset.hpp"
 
 class UnitSpritePreset : public SpritePreset
 {

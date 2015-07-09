@@ -16,6 +16,6 @@ class IsometricMapComposite
 		int z_;
 
 		std::map< int, std::map< int, std::map< int, IsometricTile* > > > tileComposite_;
-}
+};
 
 #endif //ISOMETRIC_TILE_COMPISITE_HPP

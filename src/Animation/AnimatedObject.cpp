@@ -1,11 +1,10 @@
 #include <chrono>
 
-#include "Animation/AnimatedObject.hpp"
-#include "Utils/Game/OrientationEnum.hpp"
-#include "Utils/Debug/DebugUtils.hpp"
-#include "Utils/Graphics/SpriteUtils.hpp"
+#include "AnimatedObject.hpp"
 
-#include "Graphics.hpp"
+#include "Graphics.hh"
+#include "Utils.hh"
+#include "Resources.hh"
 
 #include "SFML.hpp"
 

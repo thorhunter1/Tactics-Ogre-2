@@ -6,7 +6,7 @@
 #include "SFML.hpp"
 #include "Utils.hh"
 
-class Preset;
+#include "../Preset.hpp"
 
 class SpritePreset : public Preset
 {
