@@ -4,7 +4,7 @@
 
 int SpritePreset::load()
 {
-	load( presetPath_ );
+	load( getPresetPath() );
 }
 
 int SpritePreset::load( const std::string& presetPath )
@@ -19,6 +19,8 @@ int SpritePreset::load( const std::string& presetPath )
 
     spriteImage_ = new sf::Image;
     ret = !spriteImage_->loadFromFile( presetPath );
+
+    setPresetPath( presetPath );
 
     if( ret != 0 )
     {

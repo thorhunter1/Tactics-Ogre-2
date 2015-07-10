@@ -1,21 +1,10 @@
-#include "Resources/Preset.hpp"
-#include "Resources/Preset/SpritePreset.hpp"
-#include "Resources/Preset/SpritePreset/UnitSpritePreset/SmallUnitSpritePreset.hpp"
-
-#include "Animation/Animation.hpp"
-#include "Animation/AnimatedObject.hpp"
-
-#include "Unit/Unit/SmallUnit.hpp"
-
-#include "Graphics/Renderer.hpp"
-
-#include "Factory/UnitFactory.hpp"
-#include "Factory/TileFactory.hpp"
-
-#include "Utils/Resources/AnimationSetParser.hpp"
-#include "Utils/Graphics/TextureUtils.hpp"
-
-#include "Isometry/IsometricTile.hpp"
+#include "Resources.hh"
+#include "Animation.hh"
+#include "Unit.hh"
+#include "Graphics.hh"
+#include "Factory.hh"
+#include "Utils.hh"
+#include "Isometry.hh"
 
 #include "SFML.hpp"
 
@@ -169,6 +158,7 @@ int main()
 			"../resources/Sprites/Unit/archer_2.0.png",
 			anim_set_preset2 );
 
+	Debug( "1" );
 	units.push_back( wizard1 );
 	units.push_back( archer1 );
 	units.push_back( amazon1 );
@@ -180,13 +170,16 @@ int main()
 	IsometricTile* tile2 = TileFactory::create( "dirt" );
 	IsometricTile* tile3 = TileFactory::create( "long_grass" );
 
+	Debug("2");
 	for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
+		Debug( "2.5" );
 		(*iter)->loadPresets();
 		(*iter)->setOrientation( Orientation::South );
 		(*iter)->playAnimation( "walk", loop );
 	}
 
+	Debug("3");
 	std::thread cmd_thr( cmd_init );
 
 	Renderer::init();
@@ -239,10 +232,10 @@ int main()
 		tile3->coordinates.y = 2;
 		Renderer::render( tile3, 200, 200 );
 
-		TileFactory::updateTileType( tile2, "long_grass" );
-		tile2->coordinates.x = 2;
-		tile2->coordinates.y = 1;
-		Renderer::render( tile2, 200, 200 );
+		tile3->setWeight( Tileset::Weight::Small, Orientation::South );
+		tile3->coordinates.x = 2;
+		tile3->coordinates.y = 1;
+		Renderer::render( tile3, 200, 200 );
 
 		Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );

@@ -17,7 +17,10 @@ class Preset
         virtual int unload() {}
 
 	/// Sets preset path without loading its resource
-	virtual int setPresetPath( const std::string& presetPath ) {}
+	virtual int setPresetPath( const std::string& presetPath );
+
+	/// Gets current preset path
+	std::string getPresetPath();
 
     protected:
 
