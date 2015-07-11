@@ -4,7 +4,8 @@
 
 int SpritePreset::load()
 {
-	load( getPresetPath() );
+	int ret = load( getPresetPath() );
+    TraceReturn( ret, "Load from: " << getPresetPath() << " failed" );
 }
 
 int SpritePreset::load( const std::string& presetPath )

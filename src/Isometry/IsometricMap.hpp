@@ -19,10 +19,7 @@ class IsometricMap
 
 	protected:
 
-		int x_;
-		int y_;
-		int z_;
-
+        sf::Vector3f size_;
 		std::map< int, std::map< int, std::map< int, IsometricTile* > > > tileMap_;
 };
 
