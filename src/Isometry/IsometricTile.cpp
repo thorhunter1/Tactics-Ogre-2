@@ -13,8 +13,8 @@ int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
 	tilePreset_ = preset;
 
     //TODO: Loading preset should be handled externally 
-	int ret = tilePreset_->load();
-    if( ret !=0 ) TraceReturn( ret, "Couldn't reload tile" );
+	//int ret = tilePreset_->load();
+    //if( ret !=0 ) TraceReturn( ret, "Couldn't reload tile" );
 
 	auto iter = rendObjects_.begin();
 
