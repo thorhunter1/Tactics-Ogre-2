@@ -28,6 +28,7 @@ class Unit : public AnimatedObject, public IsometricObject
 	friend class UnitFactory;
 
     public:
+
 	    UnitInfo info;
 	    UnitStatus status;
 

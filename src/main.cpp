@@ -166,20 +166,77 @@ int main()
 	units.push_back( archer2 );
 
 	TileFactory::load();
-	IsometricTile* tile1 = TileFactory::create( "grass" );
-	IsometricTile* tile2 = TileFactory::create( "dirt" );
-	IsometricTile* tile3 = TileFactory::create( "long_grass" );
 
-	Debug("2");
-	for( auto iter = units.begin(); iter != units.end(); ++iter )
+    IsometricTileComposite dirt_comp;
+
+    for( int i = 0; i < 10; ++i )
+    {
+        for( int j = 0; j < 10; ++j )
+        {
+	        IsometricTile* tile1 = TileFactory::create( "dirt" );
+
+            tile1->coordinates.x = i;
+            tile1->coordinates.y = j;
+            tile1->setCliff( Tileset::Cliff::None );
+			tile1->setCliffType( Tileset::CliffType::Rugged );
+
+            if( j == 0 ) tile1->setCliff( Tileset::Cliff::Top, Orientation::South );
+			if( j == 9 ) tile1->setCliff( Tileset::Cliff::Top, Orientation::North );
+			if( i == 0 ) tile1->setCliff( Tileset::Cliff::Top, Orientation::West );
+			if( i == 9 ) tile1->setCliff( Tileset::Cliff::Top, Orientation::East );
+
+            dirt_comp.add( tile1 );
+        }
+    }
+
+    IsometricTileComposite grass_comp;
+
+    for( int i = 1; i < 4; ++i )
 	{
-		Debug( "2.5" );
+		for( int j = 1; j < 4; ++j )
+		{
+	        IsometricTile* tile2 = TileFactory::create( "grass" );
+
+			tile2->setWeight( Tileset::Weight::Medium );
+			tile2->coordinates.x = i;
+			tile2->coordinates.y = j;
+
+			Tileset::Weight weight = Tileset::Weight::Small;
+			int w = (i+j) % 2;
+			if( w == 0 ) weight = Tileset::Weight::Large;
+				
+			if( j == 1 ) tile2->setWeight( weight, Orientation::South );
+			if( j == 3 ) tile2->setWeight( weight, Orientation::North );
+			if( i == 1 ) tile2->setWeight( weight, Orientation::West );
+            if( i == 3 ) tile2->setWeight( weight, Orientation::East );
+            
+            grass_comp.add( tile2 );
+        }
+    }
+
+    IsometricTileComposite long_grass_comp;
+
+	IsometricTile* tile3 = TileFactory::create( "long_grass" );
+	IsometricTile* tile4 = TileFactory::create( "long_grass" );
+        
+    tile3->setWeight( Tileset::Weight::Large );
+	tile3->coordinates.x = 2;
+	tile3->coordinates.y = 2;
+
+	tile4->setWeight( Tileset::Weight::Small, Orientation::South );
+	tile4->coordinates.x = 2;
+	tile4->coordinates.y = 1;
+
+    long_grass_comp.add( tile3 );
+    long_grass_comp.add( tile4 );
+	
+    for( auto iter = units.begin(); iter != units.end(); ++iter )
+	{
 		(*iter)->loadPresets();
 		(*iter)->setOrientation( Orientation::South );
 		(*iter)->playAnimation( "walk", loop );
 	}
 
-	Debug("3");
 	std::thread cmd_thr( cmd_init );
 
 	Renderer::init();
@@ -189,55 +246,17 @@ int main()
 
 	while( true ) 
 	{
-
-		for( int i = 0; i < 5; ++i )
-		{
-			for( int j = 0 ; j < 5; ++j )
-			{
-				tile2->coordinates.x = i;
-				tile2->coordinates.y = j;
-				tile2->setCliff( Tileset::Cliff::None );
-				tile2->setCliffType( Tileset::CliffType::Rugged );
-				if( j == 0 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::South );
-				if( j == 4 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::North );
-				if( i == 0 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::West );
-				if( i == 4 ) tile2->setCliff( Tileset::Cliff::Top, Orientation::East );
-
-				Renderer::render( tile2, 200, 200 );
-			}
-		}
-
-		for( int i = 1; i < 4; ++i )
-		{
-			for( int j = 1; j < 4; ++j )
-			{
-				tile1->setWeight( Tileset::Weight::Medium );
-				tile1->coordinates.x = i;
-				tile1->coordinates.y = j;
-
-				Tileset::Weight weight = Tileset::Weight::Small;
-				int w = (i+j) % 2;
-				if( w == 0 ) weight = Tileset::Weight::Large;
-				
-				if( j == 1 ) tile1->setWeight( weight, Orientation::South );
-				if( j == 3 ) tile1->setWeight( weight, Orientation::North );
-				if( i == 1 ) tile1->setWeight( weight, Orientation::West );
-				if( i == 3 ) tile1->setWeight( weight, Orientation::East );
-				Renderer::render( tile1, 200, 200 );
-			}
-		}
-
-		tile3->setWeight( Tileset::Weight::Large );
-		tile3->coordinates.x = 2;
-		tile3->coordinates.y = 2;
-		Renderer::render( tile3, 200, 200 );
-
-		tile3->setWeight( Tileset::Weight::Small, Orientation::South );
-		tile3->coordinates.x = 2;
-		tile3->coordinates.y = 1;
-		Renderer::render( tile3, 200, 200 );
-
-		Renderer::render( wizard1, 100, 25 );
+        Renderer::render( dirt_comp, 300, 300 );
+        Renderer::render( dirt_comp, 700, 350 );
+        Renderer::render( dirt_comp, 300, 450 );
+        Renderer::render( grass_comp, 300, 300 );
+        Renderer::render( grass_comp, 200, 200 );
+        Renderer::render( grass_comp, 400, 200 );
+        Renderer::render( long_grass_comp, 200, 200 );
+        Renderer::render( long_grass_comp, 300, 300 );
+        Renderer::render( long_grass_comp, 400, 200 );
+		
+        Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );
 		Renderer::render( amazon1, 300, 25 );
 		Renderer::render( soldier1, 400, 25 );

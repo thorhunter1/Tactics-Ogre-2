@@ -25,6 +25,17 @@ int Renderer::render( IsometricTile* tile, int off_x, int off_y, int off_z )
 	r._render( tile, off_x, off_y, off_z );
 }
 
+int Renderer::render( IsometricTileComposite& composite, int off_x, int off_y, int off_z )
+{
+    Renderer& r = Renderer::getInstance();
+    for( int i = 0; i < composite.getSize(); ++i )
+    {
+            IsometricTile* tmp_tile = composite.getTile( i );
+            if( tmp_tile != NULL )
+                r._render( tmp_tile, off_x, off_y, off_z );
+    }
+}
+
 int Renderer::clear()
 {
 	Renderer& r = Renderer::getInstance();

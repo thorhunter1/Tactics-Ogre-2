@@ -4,6 +4,7 @@
 #include "SFML.hpp"
 
 class IsometricTile;
+class IsometricTileComposite;
 class RenderableObject;
 
 class Renderer
@@ -13,24 +14,25 @@ class Renderer
         static int init();
         static int render( RenderableObject* obj, int x, int y);
 	    static int render( IsometricTile* tile, int off_x = 0, int off_y = 0, int off_z = 0 );
+        static int render( IsometricTileComposite& composite, int off_x = 0, int off_y = 0, int off_z = 0 );
         static int clear();
 
     protected:
 
-	static inline Renderer& getInstance() { static Renderer r; return r; }
+	    static inline Renderer& getInstance() { static Renderer r; return r; }
 	
-	virtual int _init();
-	virtual int _render( RenderableObject* obj, int x, int y );
-	virtual int _render( IsometricTile* tile, int off_x, int off_y, int off_z );
-	virtual int _clear();
+	    virtual int _init();
+	    virtual int _render( RenderableObject* obj, int x, int y );
+	    virtual int _render( IsometricTile* tile, int off_x, int off_y, int off_z );
+	    virtual int _clear();
 
-    sf::RenderWindow window_;
-	std::vector< sf::RenderTexture > textureLayers_;
+        sf::RenderWindow window_;
+	    std::vector< sf::RenderTexture > textureLayers_;
 
-	int baseX_;
-	int baseY_;
+	    int baseX_;
+	    int baseY_;
 
-	int dist_;
+	    int dist_;
 };
 
 #endif //RENDERER_HPP

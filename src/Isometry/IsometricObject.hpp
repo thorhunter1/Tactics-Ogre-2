@@ -1,19 +1,13 @@
 #ifndef ISOMETRIC_OBJECT_HPP
 #define ISOMETRIC_OBJECT_HPP
 
-struct Coordinates
-{
-    float x;
-    float y;
-    float z;
-};
+#include "SFML.hpp"
 
 class IsometricObject
 {
     public:
 
-        Coordinates coordinates;
-
+        sf::Vector3f coordinates;
 
 };
 

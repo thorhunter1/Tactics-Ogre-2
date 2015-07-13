@@ -49,6 +49,6 @@ int TileFactory::load()
 {     
 	TileFactory& tf = TileFactory::getInstance();
 	tf.grassPreset_->load( "../resources/Sprites/Tileset/grass.png" );
-        tf.dirtPreset_->load( "../resources/Sprites/Tileset/dirt.png" );
-        tf.longGrassPreset_->load( "../resources/Sprites/Tileset/long_grass.png" );
+    tf.dirtPreset_->load( "../resources/Sprites/Tileset/dirt.png" );
+    tf.longGrassPreset_->load( "../resources/Sprites/Tileset/long_grass.png" );
 }
