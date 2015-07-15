@@ -126,10 +126,6 @@ std::string anim_set_preset2( "../resources/AnimationSets/Unit/smallunit2.json" 
 
 int main()
 {
-
-
-	//AnimationSet set = Parser::AnimationSetParser::parse( "../resources/AnimationSets/Unit/smallunit.json" );
-
 	Unit* wizard1 = UnitFactory::create( 
 			"Jim", 
 			UnitSize::Small, 
@@ -158,7 +154,6 @@ int main()
 			"../resources/Sprites/Unit/archer_2.0.png",
 			anim_set_preset2 );
 
-	Debug( "1" );
 	units.push_back( wizard1 );
 	units.push_back( archer1 );
 	units.push_back( amazon1 );
@@ -167,10 +162,8 @@ int main()
 
 	TileFactory::load();
 
-    Debug( "ffa" );
     IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 10, 10, 1 );
 
-    Debug( "mma" );
     IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 7, 7, 1 );
 
     IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 2, 1 );
