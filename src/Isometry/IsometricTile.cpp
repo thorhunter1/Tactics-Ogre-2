@@ -1,4 +1,7 @@
-#include "Isometry/IsometricTile.hpp"
+#include "IsometricTile.hpp"
+#include "Graphics.hh"
+#include "Isometry.hh"
+#include "Resources.hh"
 
 IsometricTile::IsometricTile()
 {
@@ -27,6 +30,28 @@ int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
 		++iter;
 	}
 }
+
+int IsometricTile::setCliffPreset( CliffsetSpritePreset* preset )
+{
+	cliffPreset_ = preset;
+
+    //TODO: Loading preset should be handled externally 
+	//int ret = tilePreset_->load();
+    //if( ret !=0 ) TraceReturn( ret, "Couldn't reload tile" );
+
+	auto iter = rendObjects_.begin();
+
+	while( iter != rendObjects_.end() )
+	{
+		RenderableObject& rend_obj = iter->second;
+		rend_obj.bindRenderImage( *preset->getImage() );
+		rend_obj.updateTexture();
+
+		++iter;
+	}
+}
+
+
 
 int IsometricTile::setTileType( const std::string& type )
 {

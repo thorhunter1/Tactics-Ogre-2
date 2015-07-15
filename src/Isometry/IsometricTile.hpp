@@ -1,11 +1,12 @@
 #ifndef ISOMETRIC_TILE_HPP
 #define ISOMETRIC_TILE_HPP
 
-#include "Isometry/IsometricObject.hpp"
-#include "Animation/AnimatedObject.hpp"
+#include "IsometricObject.hpp"
+#include "Utils.hh"
 
-#include "Resources/Preset/SpritePreset/TilesetSpritePreset.hpp"
-#include "Utils/Resources/TilesetEnum.hpp"
+class TilesetSpritePreset;
+class CliffsetSpritePreset;
+class RenderableObject;
 
 class IsometricTile : public IsometricObject
 {
@@ -14,14 +15,17 @@ class IsometricTile : public IsometricObject
         IsometricTile();
 
 		int setTilePreset( TilesetSpritePreset* preset );
-		int setCliffPreset( /*const CliffSpritePreset& preset*/ ) {}
+		int setCliffPreset( CliffsetSpritePreset* preset );
 
 		int setTileType( const std::string& type );
+        int setCliffType( const std::string& type ) {}
 
 		sf::Sprite getRenderTileSprite( Orientation orient );
+        sf::Sprite getRenderCliffSprite( Orientation orient ) {}
 
 		/// Gets type of the tile, eg "grass"
 		const std::string& getTileType();
+        const std::string& getCliffType();
 
 		/// Gets weight of tile on given orientation
 		Tileset::Weight getWeight( Orientation orient );
@@ -53,7 +57,7 @@ class IsometricTile : public IsometricObject
 		std::map< Orientation, Tileset::TileInfo > tileInfo_;
 
 		TilesetSpritePreset* 	tilePreset_;
-		//CliffSpritePreset*	cliffPreset_;
+		CliffsetSpritePreset*   cliffPreset_;
 		
 		int _updateSprite( Orientation orient );
 		
