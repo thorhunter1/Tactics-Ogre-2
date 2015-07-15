@@ -162,9 +162,9 @@ int main()
 
 	TileFactory::load();
 
-    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 10, 10, 1 );
+    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 1, 1, 1 );
 
-    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 7, 7, 1 );
+    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 1, 1 );
 
     IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 2, 1 );
 
@@ -185,8 +185,8 @@ int main()
 	while( true ) 
 	{
         Renderer::render( dirt_comp, 300, 300 );
-        Renderer::render( grass_comp, 300, 300 );
-        Renderer::render( long_grass_comp, 200, 200 );
+        Renderer::render( grass_comp, 400, 300 );
+        //Renderer::render( long_grass_comp, 200, 200 );
 		
         Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );

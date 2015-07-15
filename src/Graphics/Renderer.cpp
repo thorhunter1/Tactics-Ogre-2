@@ -74,6 +74,11 @@ int Renderer::_render( IsometricTile* tile, int off_x, int off_y, int off_z )
 	sf::Sprite sprite3 = tile->getRenderTileSprite( Orientation::West );
 	sf::Sprite sprite4 = tile->getRenderTileSprite( Orientation::East );
 
+    sf::Sprite cliff1 = tile->getRenderCliffSprite( Orientation::North );
+    sf::Sprite cliff2 = tile->getRenderCliffSprite( Orientation::South );
+    sf::Sprite cliff3 = tile->getRenderCliffSprite( Orientation::West );
+    sf::Sprite cliff4 = tile->getRenderCliffSprite( Orientation::East );
+
 	//  N     .      E
 	//    .   |   .  
 	// ._____1|4_____.
@@ -104,9 +109,34 @@ int Renderer::_render( IsometricTile* tile, int off_x, int off_y, int off_z )
 	sprite4.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
 	sprite4.setScale( 2, 2 );
 
+    x_coeff = -2 * offset;
+    y_coeff = -offset;
+    cliff1.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
+    cliff1.setScale( 2, 2 );
+
+    x_coeff = 0;
+    y_coeff = 0;
+    cliff2.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
+    cliff2.setScale( 2, 2 );
+
+    x_coeff = -2 * offset;
+    y_coeff = 0;
+    cliff3.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
+    cliff3.setScale( 2, 2 );
+
+    x_coeff = 0;
+    y_coeff =  -offset;
+    cliff4.setPosition( off_x + x_coeff + X_ISOMETRIC_COEFF, off_y + y_coeff + Y_ISOMETRIC_COEFF );
+    cliff4.setScale( 2, 2 );
+
 	#undef X_ISOMETRIC_COEFF
 	#undef Y_ISOMETRIC_COEFF
 
+
+    window_.draw( cliff1 );
+    window_.draw( cliff2 );
+    window_.draw( cliff3 );
+    window_.draw( cliff4 );
 	window_.draw( sprite1 );
 	window_.draw( sprite2 );
 	window_.draw( sprite3 );

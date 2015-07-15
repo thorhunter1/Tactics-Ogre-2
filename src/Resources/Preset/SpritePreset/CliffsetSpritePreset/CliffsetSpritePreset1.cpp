@@ -33,13 +33,24 @@ sf::Sprite CliffsetSpritePreset1::getSprite(
     if( orient == Orientation::North )
     {
         if( cliff == Tileset::Cliff::Top ) tmp_id += 0;
-        else return sf::Sprite();
+        else 
+        {
+            sf::Sprite tmp_sprite;
+            tmp_sprite.setTextureRect( sf::IntRect( 0, 0, 1, 1 ) );
+            return tmp_sprite;
+        }
     }
     if( orient == Orientation::East )
     {
         if( cliff == Tileset::Cliff::Top ) tmp_id += 1;
-        else return sf::Sprite();
+        else 
+        {
+             sf::Sprite tmp_sprite;
+            tmp_sprite.setTextureRect( sf::IntRect( 0, 0, 1, 1 ) );
+            return tmp_sprite;
+        }
     }
+
     if( orient == Orientation::West ) tmp_id += spriteHorizontalCount_;
     if( orient == Orientation::South ) tmp_id += spriteHorizontalCount_ + 1;
 

@@ -25,6 +25,8 @@ class TileFactory
 		TilesetSpritePreset* grassPreset_;
 		TilesetSpritePreset* dirtPreset_;
 		TilesetSpritePreset* longGrassPreset_;
+
+        CliffsetSpritePreset* dummyCliffPreset_;
 };
 
 #endif //TILE_FACTORY_HPP

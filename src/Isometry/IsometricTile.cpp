@@ -5,10 +5,16 @@
 
 IsometricTile::IsometricTile()
 {
-    rendObjects_[Orientation::North] = RenderableObject();
-    rendObjects_[Orientation::South] = RenderableObject();
-    rendObjects_[Orientation::West] = RenderableObject();
-    rendObjects_[Orientation::East] = RenderableObject();
+    rendTileObjects_[Orientation::North] = RenderableObject();
+    rendTileObjects_[Orientation::South] = RenderableObject();
+    rendTileObjects_[Orientation::West] = RenderableObject();
+    rendTileObjects_[Orientation::East] = RenderableObject();
+
+    rendCliffObjects_[Orientation::North] = RenderableObject();
+    rendCliffObjects_[Orientation::South] = RenderableObject();
+    rendCliffObjects_[Orientation::West] = RenderableObject();
+    rendCliffObjects_[Orientation::East] = RenderableObject();
+
 }
 
 int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
@@ -19,9 +25,9 @@ int IsometricTile::setTilePreset( TilesetSpritePreset* preset )
 	//int ret = tilePreset_->load();
     //if( ret !=0 ) TraceReturn( ret, "Couldn't reload tile" );
 
-	auto iter = rendObjects_.begin();
+	auto iter = rendTileObjects_.begin();
 
-	while( iter != rendObjects_.end() )
+	while( iter != rendTileObjects_.end() )
 	{
 		RenderableObject& rend_obj = iter->second;
 		rend_obj.bindRenderImage( *preset->getImage() );
@@ -39,9 +45,9 @@ int IsometricTile::setCliffPreset( CliffsetSpritePreset* preset )
 	//int ret = tilePreset_->load();
     //if( ret !=0 ) TraceReturn( ret, "Couldn't reload tile" );
 
-	auto iter = rendObjects_.begin();
+	auto iter = rendCliffObjects_.begin();
 
-	while( iter != rendObjects_.end() )
+	while( iter != rendCliffObjects_.end() )
 	{
 		RenderableObject& rend_obj = iter->second;
 		rend_obj.bindRenderImage( *preset->getImage() );
@@ -51,16 +57,24 @@ int IsometricTile::setCliffPreset( CliffsetSpritePreset* preset )
 	}
 }
 
-
-
 int IsometricTile::setTileType( const std::string& type )
 {
 	tileType_ = type;
 }
 
+int IsometricTile::setCliffType( const std::string& type )
+{
+    cliffType_ = type;
+}
+
 sf::Sprite IsometricTile::getRenderTileSprite( Orientation orient )
 {
-	return rendObjects_[orient].getRenderSprite();
+	return rendTileObjects_[orient].getRenderSprite();
+}
+
+sf::Sprite IsometricTile::getRenderCliffSprite( Orientation orient )
+{
+	return rendCliffObjects_[orient].getRenderSprite();
 }
 
 const std::string& IsometricTile::getTileType()
@@ -129,7 +143,10 @@ int IsometricTile::_updateSprite( Orientation orient )
 {
 	Tileset::TileInfo info = tileInfo_[orient];
 	sf::Sprite tmp_sprite = tilePreset_->getSprite( info.cliff, orient, info.weight, info.cliff_type );
-	rendObjects_[orient].setRenderSprite( tmp_sprite );
+	rendTileObjects_[orient].setRenderSprite( tmp_sprite );
+
+    sf::Sprite tmp_sprite2 = cliffPreset_->getSprite( orient, info.cliff );
+    rendCliffObjects_[orient].setRenderSprite( tmp_sprite2 );
 }
 
 

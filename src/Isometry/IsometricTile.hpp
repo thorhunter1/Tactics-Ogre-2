@@ -18,10 +18,10 @@ class IsometricTile : public IsometricObject
 		int setCliffPreset( CliffsetSpritePreset* preset );
 
 		int setTileType( const std::string& type );
-        int setCliffType( const std::string& type ) {}
+        int setCliffType( const std::string& type );
 
 		sf::Sprite getRenderTileSprite( Orientation orient );
-        sf::Sprite getRenderCliffSprite( Orientation orient ) {}
+        sf::Sprite getRenderCliffSprite( Orientation orient );
 
 		/// Gets type of the tile, eg "grass"
 		const std::string& getTileType();
@@ -53,18 +53,17 @@ class IsometricTile : public IsometricObject
 	protected:
 
 		std::string tileType_;
-		std::map< Orientation, RenderableObject > rendObjects_;
+        std::string cliffType_;
+
+		std::map< Orientation, RenderableObject > rendTileObjects_;
+		std::map< Orientation, RenderableObject > rendCliffObjects_;
+
 		std::map< Orientation, Tileset::TileInfo > tileInfo_;
 
 		TilesetSpritePreset* 	tilePreset_;
 		CliffsetSpritePreset*   cliffPreset_;
 		
 		int _updateSprite( Orientation orient );
-		
-
-
-
-
 };
 
 #endif //ISOMETRIC_TILE_HPP
