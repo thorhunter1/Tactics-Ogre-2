@@ -162,11 +162,15 @@ int main()
 
 	TileFactory::load();
 
-    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 1, 1, 1 );
+    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 10, 10, 2 );
+    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 1, 4 );
+    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 4, 5 );
 
-    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 1, 1 );
-
-    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 2, 1 );
+    IsometricMap map1;
+    map1.setSize( 30, 30, 30 );
+    map1.add( &dirt_comp );
+    map1.add( &grass_comp );
+    map1.add( &long_grass_comp, 5, 5 );
 
     for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -184,8 +188,9 @@ int main()
 
 	while( true ) 
 	{
-        Renderer::render( dirt_comp, 300, 300 );
-        Renderer::render( grass_comp, 400, 300 );
+        Renderer::render( map1, 400, 300 );
+        //Renderer::render( dirt_comp, 400, 300 );
+        //Renderer::render( grass_comp, 400, 300 );
         //Renderer::render( long_grass_comp, 200, 200 );
 		
         Renderer::render( wizard1, 100, 25 );
@@ -196,7 +201,7 @@ int main()
 
 		Renderer::clear();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 

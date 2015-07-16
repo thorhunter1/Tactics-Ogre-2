@@ -1,0 +1,48 @@
+#include "IsometricMap.hpp"
+
+#include "Isometry.hh"
+
+
+int IsometricMap::setSize( int x, int y, int z )
+{
+    size_.x = x;
+    size_.y = y;
+    size_.z = z;
+}
+
+sf::Vector3f IsometricMap::getSize()
+{
+    return size_;
+}
+
+int IsometricMap::add( IsometricTile* tile )
+{
+    tileMap_[tile->coordinates.x][tile->coordinates.y][tile->coordinates.z] = tile;
+}
+
+int IsometricMap::add( IsometricTile* tile, int x, int y, int z )
+{
+    tile->coordinates.x = x;
+    tile->coordinates.y = y;
+    tile->coordinates.z = z;
+    tileMap_[x][y][z] = tile;
+}
+
+int IsometricMap::add( IsometricTileComposite* comp, int off_x, int off_y, int off_z )
+{
+    for( int i = 0; i < comp->getSize(); ++i )
+    {
+        IsometricTile* tmp_tile = comp->getTile( i );
+        tmp_tile->coordinates.x += off_x;
+        tmp_tile->coordinates.y += off_y;
+        tmp_tile->coordinates.z += off_z;
+        add( tmp_tile );
+    }
+}
+
+IsometricTile* IsometricMap::getTile( int x, int y, int z )
+{
+    return tileMap_[x][y][z];
+}
+
+
