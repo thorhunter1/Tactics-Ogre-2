@@ -11,3 +11,5 @@
 
 #include "Utils/Resources/AnimationSetParser.hpp"
 #include "Utils/Resources/TilesetEnum.hpp"
+
+#include "Utils/Isometry/IsometricMapUtils.hpp"

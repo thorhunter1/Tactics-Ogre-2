@@ -162,15 +162,19 @@ int main()
 
 	TileFactory::load();
 
-    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 10, 10, 2 );
-    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 1, 4 );
-    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 4, 5 );
+    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 14, 14, 2 );
+    IsometricTileComposite dirt_comp2 = TileCompositeFactory::create( "dirt", 10, 10, 4 );
+    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 2, 2 );
+    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 4, 7 );
 
     IsometricMap map1;
     map1.setSize( 30, 30, 30 );
     map1.add( &dirt_comp );
+    map1.add( &dirt_comp2 );
     map1.add( &grass_comp );
     map1.add( &long_grass_comp, 5, 5 );
+
+    Isometry::smoothMap( &map1 );
 
     for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -188,7 +192,7 @@ int main()
 
 	while( true ) 
 	{
-        Renderer::render( map1, 400, 300 );
+        Renderer::render( map1, 500, 500 );
         //Renderer::render( dirt_comp, 400, 300 );
         //Renderer::render( grass_comp, 400, 300 );
         //Renderer::render( long_grass_comp, 200, 200 );
