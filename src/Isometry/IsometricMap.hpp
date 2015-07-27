@@ -10,7 +10,7 @@ class IsometricMap
 {
 	public:
 
-        int setSize( int x, int y, int z );
+        	int setSize( int x, int y, int z );
 		sf::Vector3f getSize();
 
 		int add( IsometricTile* tile );
@@ -22,7 +22,7 @@ class IsometricMap
 
 	protected:
 
-        sf::Vector3f size_;
+        	sf::Vector3f size_;
 		std::map< int, std::map< int, std::map< int, IsometricTile* > > > tileMap_;
 };
 

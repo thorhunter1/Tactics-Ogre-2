@@ -18,7 +18,7 @@ class IsometricTile : public IsometricObject
 		int setCliffPreset( CliffsetSpritePreset* preset );
 
 		int setTileType( const std::string& type );
-        int setCliffType( const std::string& type );
+ 	       int setCliffType( const std::string& type );
 
 		sf::Sprite getRenderTileSprite( Orientation orient );
         sf::Sprite getRenderCliffSprite( Orientation orient );

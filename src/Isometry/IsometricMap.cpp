@@ -55,4 +55,20 @@ IsometricTile* IsometricMap::getTile( int x, int y, int z )
     return tileMap_[x][y][z];
 }
 
+IsometricTile* IsometricMap::getTile( int x, int y )
+{
+	int highest_tile_z = getSize().z - 1;
+
+	IsometricTile* tile = NULL;
+
+	while( highest_tile_z >= 0 && tile == NULL )
+	{
+		IsometricTile* tile = tileMap_[x][y][highest_tile_z];
+	}
+
+	if( tile == NULL ) Warning( "Map returned NULL tile on request" );
+
+	return tile;
+}
+
 
