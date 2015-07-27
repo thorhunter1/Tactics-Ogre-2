@@ -161,6 +161,7 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
         {
             for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
             {
+                //TODO: perhaps move visibility to isometricObject/tile member?
                 Tileset::Visibility vis = Tileset::Visibility::All;
 
                 IsometricTile* main_tile = map.getTile( iWidth, iLength, iHeight );

@@ -163,9 +163,9 @@ int main()
 	TileFactory::load();
 
     IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 14, 14, 2 );
-    IsometricTileComposite dirt_comp2 = TileCompositeFactory::create( "dirt", 10, 10, 4 );
-    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 1, 2, 2 );
-    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 3, 4, 7 );
+    IsometricTileComposite dirt_comp2 = TileCompositeFactory::create( "grass", 10, 10, 4 );
+    IsometricTileComposite grass_comp = TileCompositeFactory::create( "long_grass", 1, 2, 4 );
+    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "grass", 3, 4, 7 );
 
     IsometricMap map1;
     map1.setSize( 30, 30, 30 );
