@@ -1,7 +1,7 @@
 #include "IsometricMap.hpp"
 
 #include "Isometry.hh"
-
+#include "Utils.hh"
 
 int IsometricMap::setSize( int x, int y, int z )
 {
@@ -17,14 +17,24 @@ sf::Vector3f IsometricMap::getSize()
 
 int IsometricMap::add( IsometricTile* tile )
 {
+    if( tile == NULL )
+    {
+        TraceReturn( -1, "Omitted adding nonexisting tile" );
+    }
+
     tileMap_[tile->coordinates.x][tile->coordinates.y][tile->coordinates.z] = tile;
 }
 
 int IsometricMap::add( IsometricTile* tile, int x, int y, int z )
 {
-    tile->coordinates.x = x;
-    tile->coordinates.y = y;
-    tile->coordinates.z = z;
+    if( tile != NULL )
+    {
+        tile->coordinates.x = x;
+        tile->coordinates.y = y;
+        tile->coordinates.z = z;
+    }
+    else Warning( "NULL tile was added" );
+
     tileMap_[x][y][z] = tile;
 }
 
