@@ -7,6 +7,8 @@
 #include "Graphics.hh"
 #include "Isometry.hh"
 
+#include <thread>
+
 int Renderer::init()
 {
 	Renderer& r = Renderer::getInstance();
@@ -182,19 +184,24 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 
 					IsometricTile* main_tile = map.getTile( iWidth, iLength, iHeight );
 					if( main_tile == NULL ) { continue; }
-					IsometricTile* south_tile = map.getTile( iWidth - 1, iLength, iHeight );
-					IsometricTile* west_tile = map.getTile( iWidth, iLength - 1, iHeight );
+					//IsometricTile* south_tile = map.getTile( iWidth, iLength -1, iHeight );
+					//IsometricTile* west_tile = map.getTile( iWidth -1, iLength, iHeight );
+					IsometricTile* south_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight );
+					IsometricTile* west_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight );
 					IsometricTile* top_tile = map.getTile( iWidth, iLength, iHeight + 1 );
 
 					//else Debug( "NOT NULL" );
-					if( south_tile != NULL ) vis & ( ~Tileset::Visibility::CliffSouth );
-					if( west_tile != NULL ) vis & ( ~Tileset::Visibility::CliffWest );
-					if( top_tile != NULL ) vis & ( ~Tileset::Visibility::TileAll );
+					if( south_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffSouth );
+					if( west_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffWest );
+					if( top_tile != NULL ) vis &= ( ~Tileset::Visibility::TileAll );
 
-					if( main_tile->getLayer() == iLayer ) 
+					//Debug( "vis " << vis );
+					//sf::sleep( sf::seconds(1) );
+
+					if( iLayer == 0 ) 
 						_render( main_tile, vis, off_x, off_y, true, true );
-					else
-						_render( main_tile, vis, off_x, off_y, false, true );
+					else if( iLayer == main_tile->getLayer() )
+						_render( main_tile, vis, off_x, off_y, true, false );
 				}
 
 			}
