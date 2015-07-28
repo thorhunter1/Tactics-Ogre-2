@@ -26,7 +26,7 @@ class Renderer
 	
 	    virtual int _init();
 	    virtual int _render( RenderableObject* obj, int x, int y );
-	    virtual int _render( IsometricTile* tile, Tileset::Visibility vis, int off_x, int off_y );
+	    virtual int _render( IsometricTile* tile, Tileset::Visibility vis, int off_x, int off_y, bool rendTile = true, bool rendCliff = true );
         virtual int _render( IsometricMap& map, int off_x, int off_y );
 	    virtual int _clear();
 

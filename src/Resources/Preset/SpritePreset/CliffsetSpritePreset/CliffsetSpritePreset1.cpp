@@ -32,7 +32,11 @@ sf::Sprite CliffsetSpritePreset1::getSprite(
 
     if( orient == Orientation::North )
     {
-        if( cliff == Tileset::Cliff::Top ) tmp_id += 0;
+        if( cliff == Tileset::Cliff::Top || cliff == Tileset::Cliff::TopBottom ) 
+	{
+		tmp_id += 0;
+		return getSprite( tmp_id );
+	}
         else 
         {
             sf::Sprite tmp_sprite;
@@ -42,7 +46,11 @@ sf::Sprite CliffsetSpritePreset1::getSprite(
     }
     if( orient == Orientation::East )
     {
-        if( cliff == Tileset::Cliff::Top ) tmp_id += 1;
+        if( cliff == Tileset::Cliff::Top || cliff == Tileset::Cliff::TopBottom ) 
+	{
+		tmp_id += 1;
+		return getSprite( tmp_id );
+	}
         else 
         {
              sf::Sprite tmp_sprite;

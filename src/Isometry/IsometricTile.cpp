@@ -139,6 +139,24 @@ int IsometricTile::setWeight( Tileset::Weight weight )
 	setWeight( weight, Orientation::East );
 }
 
+int IsometricTile::setLayer( int layer )
+{
+	layer_ = layer;
+}
+
+int IsometricTile::getLayer()
+{
+	return layer_;
+}
+
+int IsometricTile::_updateSprite()
+{
+	_updateSprite( Orientation::North );
+	_updateSprite( Orientation::South );
+	_updateSprite( Orientation::West );
+	_updateSprite( Orientation::East );
+}
+
 int IsometricTile::_updateSprite( Orientation orient )
 {
 	Tileset::TileInfo info = tileInfo_[orient];

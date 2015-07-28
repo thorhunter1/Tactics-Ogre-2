@@ -13,7 +13,7 @@ namespace Tileset
 {
 	enum class Cliff { Top, Bottom, Middle, TopBottom, None };
 	enum class CliffType { Smooth, Rugged };
-	enum class Weight { Small, Medium, Large };
+	enum class Weight { Small, Medium, Large, Full };
 
     enum Visibility {   TileNorth   = 1 << 0,
                         TileSouth   = 1 << 1,

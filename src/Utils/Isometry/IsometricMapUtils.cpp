@@ -1,5 +1,7 @@
 #include "IsometricMapUtils.hpp"
 
+#include <cstdlib>
+
 namespace Isometry
 {
     int smoothTile( IsometricMap* map, int x, int y, int z )
@@ -57,8 +59,20 @@ namespace Isometry
             {
 			    if( adj_tile->getTileType() == main_tile->getTileType() )
 			    	main_tile->setWeight( Tileset::Weight::Medium, orient );
-			    else
-				    main_tile->setWeight( Tileset::Weight::Small, orient );
+			    else if ( adj_tile->getLayer() < main_tile->getLayer() )
+			    {
+				    static int seed = std::time(0);
+				    ++seed;
+				    std::srand( seed );
+				    int rand_number = std::rand () % 2;
+				    Debug( rand_number );
+				    if( rand_number == 1 )
+				    	main_tile->setWeight( Tileset::Weight::Small, orient );
+				    else
+				    	main_tile->setWeight( Tileset::Weight::Large, orient );
+			    }
+			    else 
+				    main_tile->setWeight( Tileset::Weight::Full, orient );
             }
             else
                 main_tile->setWeight( Tileset::Weight::Small, orient );

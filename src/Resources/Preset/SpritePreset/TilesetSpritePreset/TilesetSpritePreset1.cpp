@@ -42,6 +42,7 @@ sf::Sprite TilesetSpritePreset1::getSprite(
 		if( weight == Tileset::Weight::Small ) 	tmp_id += 6;
 		if( weight == Tileset::Weight::Medium ) tmp_id += 4;
 		if( weight == Tileset::Weight::Large )  tmp_id += 8;
+		if( weight == Tileset::Weight::Full ) 	tmp_id += 10;
 	}
 
 	if( orient == Orientation::North ) tmp_id += 0;

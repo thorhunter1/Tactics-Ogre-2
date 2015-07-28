@@ -50,6 +50,10 @@ class IsometricTile : public IsometricObject
 		/// Sets weight of tile on all orientations
 		int setWeight( Tileset::Weight weight );
 
+		/// Sets layer of tile
+		int setLayer( int layer );
+		int getLayer();
+
 	protected:
 
 		std::string tileType_;
@@ -62,7 +66,9 @@ class IsometricTile : public IsometricObject
 
 		TilesetSpritePreset* 	tilePreset_;
 		CliffsetSpritePreset*   cliffPreset_;
+		int			layer_;
 		
+		int _updateSprite();
 		int _updateSprite( Orientation orient );
 };
 

@@ -16,9 +16,24 @@ IsometricTile* TileFactory::create( const std::string& type )
     TileFactory& tf = TileFactory::getInstance();
     IsometricTile* tile = new IsometricTile();
 
-    if( type == "grass" )       { tile->setTilePreset( tf.grassPreset_ ); tile->setTileType( "grass" ); }
-    if( type == "dirt" )        { tile->setTilePreset( tf.dirtPreset_ ); tile->setTileType( "dirt" ); }
-    if( type == "long_grass" )  { tile->setTilePreset( tf.longGrassPreset_ ); tile->setTileType( "long_grass" ); }
+    if( type == "grass" )       
+    { 
+	    tile->setTilePreset( tf.grassPreset_ ); 
+	    tile->setTileType( "grass" ); 
+	    tile->setLayer(1);
+    }
+    if( type == "dirt" )        
+    { 
+	    tile->setTilePreset( tf.dirtPreset_ ); 
+	    tile->setTileType( "dirt" ); 
+	    tile->setLayer(0);
+    }
+    if( type == "long_grass" )  
+    { 
+	    tile->setTilePreset( tf.longGrassPreset_ ); 
+	    tile->setTileType( "long_grass" ); 
+	    tile->setLayer(2);
+    }
 
     tile->setCliffPreset( tf.dummyCliffPreset_ );
 

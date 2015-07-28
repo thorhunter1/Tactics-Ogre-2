@@ -24,7 +24,7 @@ class TilesetSpritePreset1 : public TilesetSpritePreset
         static const int frameWidth_    = 16;
         static const int frameHeight_   = 8;
 
-        static const int spriteHorizontalCount_   = 10;
+        static const int spriteHorizontalCount_   = 12;
         static const int spriteVerticalCount_     = 2;
 };
 
