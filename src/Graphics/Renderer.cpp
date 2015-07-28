@@ -185,6 +185,6 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 int Renderer::_clear()
 {
 	window_.display();
-	window_.clear();
+	window_.clear( sf::Color( 56, 155, 155, 255 ) );
 }
 

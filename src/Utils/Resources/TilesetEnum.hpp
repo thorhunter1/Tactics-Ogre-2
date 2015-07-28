@@ -11,7 +11,7 @@ template<class T> inline T& operator^= (T& a, T b) { return (T&)((int&)a ^= (int
 
 namespace Tileset
 {
-	enum class Cliff { Top, Bottom, Middle, None };
+	enum class Cliff { Top, Bottom, Middle, TopBottom, None };
 	enum class CliffType { Smooth, Rugged };
 	enum class Weight { Small, Medium, Large };
 

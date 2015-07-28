@@ -52,7 +52,7 @@ namespace Isometry
         IsometricTile* bot_tile = map->getTile( x, y, z-1 );
 
         if( adj_tile != NULL )
-		{
+	{
             if( up_adj_tile == NULL )
             {
 			    if( adj_tile->getTileType() == main_tile->getTileType() )
@@ -62,10 +62,11 @@ namespace Isometry
             }
             else
                 main_tile->setWeight( Tileset::Weight::Small, orient );
-		}
+	}
 
-        if( adj_tile == NULL && up_tile == NULL ) main_tile->setCliff( Tileset::Cliff::Top, orient );
-		else if( bot_adj_tile != NULL && up_tile != NULL ) main_tile->setCliff( Tileset::Cliff::Bottom, orient );
+	if( adj_tile == NULL && up_tile == NULL && bot_adj_tile != NULL ) main_tile->setCliff( Tileset::Cliff::TopBottom, orient );
+        else if( adj_tile == NULL && up_tile == NULL ) main_tile->setCliff( Tileset::Cliff::Top, orient );
+	else if( bot_adj_tile != NULL && up_tile != NULL ) main_tile->setCliff( Tileset::Cliff::Bottom, orient );
         else if( up_tile != NULL /*&& bot_tile != NULL*/ ) main_tile->setCliff( Tileset::Cliff::Middle, orient );
         else main_tile->setCliff( Tileset::Cliff::None, orient );
     }

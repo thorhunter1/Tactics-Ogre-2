@@ -57,7 +57,8 @@ sf::Sprite CliffsetSpritePreset1::getSprite(
     if( cliff == Tileset::Cliff::Top ) tmp_id += 0;
     if( cliff == Tileset::Cliff::Bottom ) tmp_id += spriteHorizontalCount_;
     if( cliff == Tileset::Cliff::Middle ) tmp_id += 2 * spriteHorizontalCount_;
+    if( cliff == Tileset::Cliff::TopBottom ) tmp_id += 3 * spriteHorizontalCount_;
 
-	return getSprite( tmp_id );
+    return getSprite( tmp_id );
 
 }

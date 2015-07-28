@@ -13,7 +13,7 @@ class CliffsetSpritePreset1 : public CliffsetSpritePreset
     public:
 	
 	CliffsetSpritePreset1() {}
-    virtual sf::Sprite getSprite( unsigned int frameID );
+   	virtual sf::Sprite getSprite( unsigned int frameID );
 	virtual sf::Sprite getSprite(	Orientation orient,
 		       			            Tileset::Cliff cliff,
                                     int variation = 0 );
@@ -24,7 +24,7 @@ class CliffsetSpritePreset1 : public CliffsetSpritePreset
         static const int frameHeight_       = 16;
 
         static const int spriteHorizontalCount_   = 2;
-        static const int spriteVerticalCount_     = 4;
+        static const int spriteVerticalCount_     = 5;
 };
 
 #endif //TILESET1_SPRITE_PRESET_HPP
