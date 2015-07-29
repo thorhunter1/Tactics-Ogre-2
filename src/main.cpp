@@ -162,23 +162,26 @@ int main()
 
 	TileFactory::load();
 
-    IsometricTileComposite dirt_comp = TileCompositeFactory::create( "dirt", 3, 3, 2 );
-    IsometricTileComposite grass_comp = TileCompositeFactory::create( "grass", 10, 10, 4 );
-    IsometricTileComposite grass_comp3 = TileCompositeFactory::create( "grass", 8, 8, 3 );
-    IsometricTileComposite grass_comp2 = TileCompositeFactory::create( "grass", 2, 2, 2 );
-    IsometricTileComposite long_grass_comp = TileCompositeFactory::create( "long_grass", 1, 1, 4 );
-    IsometricTileComposite dirt_comp2 = TileCompositeFactory::create( "dirt", 3, 4, 4 );
-    IsometricTileComposite grass_comp4 = TileCompositeFactory::create( "grass", 3, 4, 2 );
+    IsometricTileComposite dirt_comp1 = TileCompositeFactory::create( "dirt", 3, 3, 1 );
+    IsometricTileComposite dirt_comp2 = TileCompositeFactory::create( "dirt", 3, 3, 3 );
+    IsometricTileComposite dirt_comp3 = TileCompositeFactory::create( "dirt", 2, 2, 1 );
+    IsometricTileComposite grass_comp1 = TileCompositeFactory::create( "grass", 4, 4, 2 );
+    IsometricTileComposite grass_comp2 = TileCompositeFactory::create( "grass", 4, 4, 4 );
+    IsometricTileComposite grass_comp3 = TileCompositeFactory::create( "grass", 4, 4, 6 );
+    IsometricTileComposite long_grass_comp1 = TileCompositeFactory::create( "long_grass", 3, 3, 1 );
+    IsometricTileComposite long_grass_comp2 = TileCompositeFactory::create( "long_grass", 2, 1, 1 );
+    IsometricTileComposite long_grass_comp3 = TileCompositeFactory::create( "long_grass", 7, 7, 1 );
     
     IsometricMap map1;
     map1.setSize( 30, 30, 30 );
-    map1.add( &dirt_comp );
-    map1.add( &grass_comp, 2, 2);
-    map1.add( &grass_comp2 );
-    map1.add( &grass_comp3 );
-    map1.add( &grass_comp4, 0, 7 );
-    map1.add( &long_grass_comp );
-    map1.add( &dirt_comp2, 3, 3 );
+    map1.add( &dirt_comp1, 2, 2, 0 );
+    map1.add( &grass_comp1, 4, 0, 0 );
+    map1.add( &long_grass_comp1, 6, 2, 1 );
+    map1.add( &dirt_comp2, 4, 4, 0 );
+    map1.add( &grass_comp2, 0, 4, 0 );
+    map1.add( &long_grass_comp2, 6, 3, 2 );
+    map1.add( &long_grass_comp3, 3, 3, 0 );
+    map1.add( &dirt_comp3, 1, 5, 3 );
 
     Isometry::smoothMap( &map1 );
 

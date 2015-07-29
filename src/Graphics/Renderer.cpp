@@ -171,11 +171,30 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 					if( main_tile == NULL ) { continue; }
 
 					Tileset::Visibility vis = _checkVisibility( main_tile, &map );
-			
+
 					if( iLayer == 0 ) 
 						_render( main_tile, vis, off_x, off_y, true, true );
 					else if( iLayer == main_tile->getLayer() )
 						_render( main_tile, vis, off_x, off_y, true, false );
+
+					IsometricTile* s_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight );
+					IsometricTile* w_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight );
+					IsometricTile* s_bot_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight -1 );
+					IsometricTile* w_bot_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight -1 );
+
+					if( s_tile == NULL && s_bot_tile != NULL )
+					{
+						Tileset::Visibility t_vis = _checkVisibility( s_bot_tile, &map );
+						_render( s_bot_tile, t_vis, off_x, off_y, true, false, Orientation::North );
+					}
+
+					if( w_tile == NULL && w_bot_tile != NULL )
+					{
+						Tileset::Visibility t_vis = _checkVisibility( w_bot_tile, &map );
+						_render( w_bot_tile, t_vis, off_x, off_y, true, false, Orientation::East );
+					}
+
+
 				}
 
 			}
