@@ -7,8 +7,6 @@
 #include "Graphics.hh"
 #include "Isometry.hh"
 
-#include <thread>
-
 int Renderer::init()
 {
 	Renderer& r = Renderer::getInstance();
@@ -77,99 +75,86 @@ int Renderer::_render( RenderableObject* obj, int x, int y )
 
 int Renderer::_render( IsometricTile* tile, Tileset::Visibility vis, int off_x, int off_y, bool rendTile, bool rendCliff )
 {
+	_render( tile, vis, off_x, off_y, rendTile, rendCliff, Orientation::North );
+	_render( tile, vis, off_x, off_y, rendTile, rendCliff, Orientation::South );
+	_render( tile, vis, off_x, off_y, rendTile, rendCliff, Orientation::West );
+	_render( tile, vis, off_x, off_y, rendTile, rendCliff, Orientation::East );
+}
+
+int Renderer::_render( IsometricTile* tile, Tileset::Visibility vis, int off_x, int off_y, bool rendTile, bool rendCliff, Orientation orient )
+{
 	const int offset = 16;
 
-	sf::Sprite sprite1 = tile->getRenderTileSprite( Orientation::North );
-	sf::Sprite sprite2 = tile->getRenderTileSprite( Orientation::South );
-	sf::Sprite sprite3 = tile->getRenderTileSprite( Orientation::West );
-	sf::Sprite sprite4 = tile->getRenderTileSprite( Orientation::East );
-
-	sf::Sprite cliff1 = tile->getRenderCliffSprite( Orientation::North );
-	sf::Sprite cliff2 = tile->getRenderCliffSprite( Orientation::South );
-	sf::Sprite cliff3 = tile->getRenderCliffSprite( Orientation::West );
-	sf::Sprite cliff4 = tile->getRenderCliffSprite( Orientation::East );
-
-	//  N     .      E
-	//    .   |   .  
-	// ._____1|4_____.
-	//  ` .  3|2  . `
-	//       .|.     
-	//  W     `  	 s
+	sf::Sprite sprite1 = tile->getRenderTileSprite( orient );
+	sf::Sprite cliff1 = tile->getRenderCliffSprite( orient );
 
 #define X_ISOMETRIC_COEFF 2 * offset * (tile->coordinates.x - tile->coordinates.y)
 #define Y_ISOMETRIC_COEFF -offset * (tile->coordinates.x + tile->coordinates.y + tile->coordinates.z)
 
 	int x_coeff, y_coeff;
 
-	if( rendTile )
+	if( orient == Orientation::North )
 	{
 		x_coeff = -2 * offset + off_x;
 		y_coeff = -offset + off_y;
-		sprite1.setPosition( x_coeff + X_ISOMETRIC_COEFF, + y_coeff + Y_ISOMETRIC_COEFF );
-		sprite1.setScale( 2, 2 );
-
+	}
+	else if( orient == Orientation::South )
+	{
 		x_coeff = 0 + off_x;
 		y_coeff = 0 + off_y;
-		sprite2.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		sprite2.setScale( 2, 2 );
-
+	}
+	else if( orient == Orientation::West )
+	{
 		x_coeff = -2 * offset + off_x;
 		y_coeff = 0 + off_y;
-		sprite3.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		sprite3.setScale( 2, 2 );
-
+	}
+	else if( orient == Orientation::East )
+	{
 		x_coeff = 0 + off_x;
 		y_coeff = -offset + off_y;
-		sprite4.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		sprite4.setScale( 2, 2 );
+	}
+
+	if( rendTile )
+	{
+		sprite1.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
+		sprite1.setScale( 2, 2 );
 	}
 
 	if( rendCliff )
 	{
-		x_coeff = -2 * offset + off_x;
-		y_coeff = -offset + off_y;
 		cliff1.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
 		cliff1.setScale( 2, 2 );
-
-		x_coeff = 0 + off_x;
-		y_coeff = 0 + off_y;
-		cliff2.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		cliff2.setScale( 2, 2 );
-
-		x_coeff = -2 * offset + off_x;
-		y_coeff = 0 + off_y;
-		cliff3.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		cliff3.setScale( 2, 2 );
-
-		x_coeff = 0 + off_x;
-		y_coeff =  -offset + off_y;
-		cliff4.setPosition( x_coeff + X_ISOMETRIC_COEFF, y_coeff + Y_ISOMETRIC_COEFF );
-		cliff4.setScale( 2, 2 );
 	}
 
 #undef X_ISOMETRIC_COEFF
 #undef Y_ISOMETRIC_COEFF
 
 
+	Tileset::Visibility orient_vis;
+	if( orient == Orientation::North ) orient_vis = Tileset::Visibility::CliffNorth | Tileset::Visibility::TileNorth;
+	if( orient == Orientation::South ) orient_vis = Tileset::Visibility::CliffSouth | Tileset::Visibility::TileSouth;
+	if( orient == Orientation::West ) orient_vis = Tileset::Visibility::CliffWest | Tileset::Visibility::TileWest;
+	if( orient == Orientation::East ) orient_vis = Tileset::Visibility::CliffEast | Tileset::Visibility::TileEast;
+
 	if( rendCliff )
 	{
-		if( vis & Tileset::Visibility::CliffNorth ) window_.draw( cliff1 );
-		if( vis & Tileset::Visibility::CliffSouth ) window_.draw( cliff2 );
-		if( vis & Tileset::Visibility::CliffWest ) window_.draw( cliff3 );
-		if( vis & Tileset::Visibility::CliffEast ) window_.draw( cliff4 );
+		if( vis & orient_vis ) window_.draw( cliff1 );
 	}
 	if( rendTile )
 	{
-		if( vis & Tileset::Visibility::TileNorth ) window_.draw( sprite1 );
-		if( vis & Tileset::Visibility::TileSouth ) window_.draw( sprite2 );
-		if( vis & Tileset::Visibility::TileWest ) window_.draw( sprite3 );
-		if( vis & Tileset::Visibility::TileEast ) window_.draw( sprite4 );
+		if( vis & orient_vis ) window_.draw( sprite1 );
 	}
 }
+
+
 
 int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 {
 	sf::Vector3f map_size = map.getSize();
+
+	
+	for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
+	{
 
 	for( int iLayer = 0; iLayer < 3; ++iLayer )
 	{
@@ -177,27 +162,16 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 		{
 			for( int iLength = map_size.y - 1; iLength >= 0; --iLength )
 			{
-				for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
-				{
+				
+				//for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
+				//{
 					//TODO: perhaps move visibility to isometricObject/tile member?
-					Tileset::Visibility vis = Tileset::Visibility::All;
 
 					IsometricTile* main_tile = map.getTile( iWidth, iLength, iHeight );
 					if( main_tile == NULL ) { continue; }
-					//IsometricTile* south_tile = map.getTile( iWidth, iLength -1, iHeight );
-					//IsometricTile* west_tile = map.getTile( iWidth -1, iLength, iHeight );
-					IsometricTile* south_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight );
-					IsometricTile* west_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight );
-					IsometricTile* top_tile = map.getTile( iWidth, iLength, iHeight + 1 );
 
-					//else Debug( "NOT NULL" );
-					if( south_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffSouth );
-					if( west_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffWest );
-					if( top_tile != NULL ) vis &= ( ~Tileset::Visibility::TileAll );
-
-					//Debug( "vis " << vis );
-					//sf::sleep( sf::seconds(1) );
-
+					Tileset::Visibility vis = _checkVisibility( main_tile, &map );
+			
 					if( iLayer == 0 ) 
 						_render( main_tile, vis, off_x, off_y, true, true );
 					else if( iLayer == main_tile->getLayer() )
@@ -207,6 +181,28 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 			}
 		}
 	}
+}
+
+Tileset::Visibility Renderer::_checkVisibility( IsometricTile* tile, IsometricMap* map )
+{
+
+	Tileset::Visibility vis = Tileset::Visibility::All;
+
+	if( tile == NULL || map == NULL ) return ~vis;
+
+	int x = tile->coordinates.x;
+	int y = tile->coordinates.y;
+	int z = tile->coordinates.z;
+
+	IsometricTile* south_tile = Isometry::getAdjacentTile( map, Orientation::South, x, y, z );
+	IsometricTile* west_tile = Isometry::getAdjacentTile( map, Orientation::West, x, y, z );
+	IsometricTile* top_tile = map->getTile( x, y, z + 1 );
+
+	if( south_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffSouth );
+	if( west_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffWest );
+	if( top_tile != NULL ) vis &= ( ~Tileset::Visibility::TileAll );
+
+	return vis;
 }
 
 int Renderer::_clear()

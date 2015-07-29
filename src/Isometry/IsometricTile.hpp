@@ -57,7 +57,7 @@ class IsometricTile : public IsometricObject
 	protected:
 
 		std::string tileType_;
-        std::string cliffType_;
+        	std::string cliffType_;
 
 		std::map< Orientation, RenderableObject > rendTileObjects_;
 		std::map< Orientation, RenderableObject > rendCliffObjects_;

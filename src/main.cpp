@@ -173,12 +173,12 @@ int main()
     IsometricMap map1;
     map1.setSize( 30, 30, 30 );
     map1.add( &dirt_comp );
-    //map1.add( &grass_comp, 2, 2);
+    map1.add( &grass_comp, 2, 2);
     map1.add( &grass_comp2 );
-    //map1.add( &grass_comp3 );
-    //map1.add( &grass_comp4, 0, 7 );
+    map1.add( &grass_comp3 );
+    map1.add( &grass_comp4, 0, 7 );
     map1.add( &long_grass_comp );
-    //map1.add( &dirt_comp2, 3, 3 );
+    map1.add( &dirt_comp2, 3, 3 );
 
     Isometry::smoothMap( &map1 );
 
