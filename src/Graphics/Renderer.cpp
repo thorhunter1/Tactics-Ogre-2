@@ -38,10 +38,25 @@ int Renderer::render( IsometricTileComposite& composite, int off_x, int off_y )
 	}
 }
 
-int Renderer::render( IsometricMap& map, int off_x, int off_y )
+int Renderer::renderMap()
 {
 	Renderer& r = Renderer::getInstance();
-	r._render( map, off_x, off_y );
+	r.preMapTexture_.display();
+
+	sf::Texture tmp_tex = r.preMapTexture_.getTexture();
+	sf::Sprite tmp_sprite( tmp_tex );
+	//tmp_sprite.setColor( sf::Color::Blue );
+	//
+	r.window_.draw( tmp_sprite );
+
+
+
+}
+
+int Renderer::preRender( IsometricMap& map, int off_x, int off_y )
+{
+	Renderer& r = Renderer::getInstance();
+	r._preRenderMap( map, off_x, off_y );
 }
 
 int Renderer::clear()
@@ -70,7 +85,7 @@ int Renderer::_render( RenderableObject* obj, int x, int y )
 	sprite.setPosition( x, y );
 	sprite.setScale( 2, 2 );
 
-	preMapTexture_.draw( sprite );
+	window_.draw( sprite );
 
 	return 0;
 }
@@ -150,10 +165,9 @@ int Renderer::_render( IsometricTile* tile, Tileset::Visibility vis, int off_x, 
 
 
 
-int Renderer::_render( IsometricMap& map, int off_x, int off_y )
+int Renderer::_preRenderMap( IsometricMap& map, int off_x, int off_y )
 {
 	sf::Vector3f map_size = map.getSize();
-
 
 	for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
 	{
@@ -206,14 +220,7 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 
 int Renderer::_clear()
 {
-	preMapTexture_.display();
-
-	sf::Texture tmp_tex = preMapTexture_.getTexture();
-	sf::Sprite tmp_sprite( tmp_tex );
-	//tmp_sprite.setColor( sf::Color::Blue );
-	window_.draw( tmp_sprite );
-
-	preMapTexture_.clear( sf::Color( 56, 155, 155, 255 ) );
 	window_.display();
+	window_.clear( sf::Color( 56, 155, 155, 255 ) );
 }
 
