@@ -53,6 +53,7 @@ int Renderer::clear()
 int Renderer::_init()
 {
 	window_.create( sf::VideoMode( 800, 600 ), "My window", sf::Style::Close );
+	preMapTexture_.setSmooth( true );
 	preMapTexture_.create( 800, 800 );
 }
 
@@ -89,8 +90,8 @@ int Renderer::_render( IsometricTile* tile, Tileset::Visibility vis, int off_x, 
 	sf::Sprite sprite1 = tile->getRenderTileSprite( orient );
 	sf::Sprite cliff1 = tile->getRenderCliffSprite( orient );
 
-#define X_ISOMETRIC_COEFF 2 * offset * (tile->coordinates.x - tile->coordinates.y)
-#define Y_ISOMETRIC_COEFF -offset * (tile->coordinates.x + tile->coordinates.y + tile->coordinates.z)
+#define X_ISOMETRIC_COEFF 2 * offset * (tile->getPosition().x - tile->getPosition().y)
+#define Y_ISOMETRIC_COEFF -offset * (tile->getPosition().x + tile->getPosition().y + tile->getPosition().z)
 
 	int x_coeff, y_coeff;
 
@@ -167,7 +168,7 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 					IsometricTile* main_tile = map.getTile( iWidth, iLength, iHeight );
 					if( main_tile == NULL ) { continue; }
 
-					Tileset::Visibility vis = _checkVisibility( main_tile, &map );
+					Tileset::Visibility vis = Isometry::checkVisibility( map, main_tile );
 
 					// Main rendering
 
@@ -176,22 +177,22 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 					else if( iLayer == main_tile->getLayer() )
 						_render( main_tile, vis, off_x, off_y, true, false );
 
-					IsometricTile* s_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight );
-					IsometricTile* w_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight );
-					IsometricTile* s_bot_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight -1 );
-					IsometricTile* w_bot_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight -1 );
+					IsometricTile* s_tile = Isometry::getAdjacentTile( map, Orientation::South, iWidth, iLength, iHeight );
+					IsometricTile* w_tile = Isometry::getAdjacentTile( map, Orientation::West, iWidth, iLength, iHeight );
+					IsometricTile* s_bot_tile = Isometry::getAdjacentTile( map, Orientation::South, iWidth, iLength, iHeight -1 );
+					IsometricTile* w_bot_tile = Isometry::getAdjacentTile( map, Orientation::West, iWidth, iLength, iHeight -1 );
 
 					// Rerendering of tile part covered by bottom cliff
 
 					if( s_tile == NULL && s_bot_tile != NULL )
 					{
-						Tileset::Visibility t_vis = _checkVisibility( s_bot_tile, &map );
+						Tileset::Visibility t_vis = Isometry::checkVisibility( map, s_bot_tile );
 						_render( s_bot_tile, t_vis, off_x, off_y, true, false, Orientation::North );
 					}
 
 					if( w_tile == NULL && w_bot_tile != NULL )
 					{
-						Tileset::Visibility t_vis = _checkVisibility( w_bot_tile, &map );
+						Tileset::Visibility t_vis = Isometry::checkVisibility( map, w_bot_tile );
 						_render( w_bot_tile, t_vis, off_x, off_y, true, false, Orientation::East );
 					}
 
@@ -203,34 +204,13 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 	}
 }
 
-Tileset::Visibility Renderer::_checkVisibility( IsometricTile* tile, IsometricMap* map )
-{
-
-	Tileset::Visibility vis = Tileset::Visibility::All;
-
-	if( tile == NULL || map == NULL ) return ~vis;
-
-	int x = tile->coordinates.x;
-	int y = tile->coordinates.y;
-	int z = tile->coordinates.z;
-
-	IsometricTile* south_tile = Isometry::getAdjacentTile( map, Orientation::South, x, y, z );
-	IsometricTile* west_tile = Isometry::getAdjacentTile( map, Orientation::West, x, y, z );
-	IsometricTile* top_tile = map->getTile( x, y, z + 1 );
-
-	if( south_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffSouth );
-	if( west_tile != NULL ) vis &= ( ~Tileset::Visibility::CliffWest );
-	if( top_tile != NULL ) vis &= ( ~Tileset::Visibility::TileAll );
-
-	return vis;
-}
-
 int Renderer::_clear()
 {
 	preMapTexture_.display();
 
 	sf::Texture tmp_tex = preMapTexture_.getTexture();
 	sf::Sprite tmp_sprite( tmp_tex );
+	//tmp_sprite.setColor( sf::Color::Blue );
 	window_.draw( tmp_sprite );
 
 	preMapTexture_.clear( sf::Color( 56, 155, 155, 255 ) );

@@ -19,11 +19,8 @@ IsometricTileComposite TileCompositeFactory::_create( const std::string& tileTyp
         {
             for( int iHeight = 0; iHeight < height; ++iHeight )
             {
-                IsometricTile* tile = TileFactory::create( tileType );
+                IsometricTile* tile = TileFactory::create( tileType, iWidth, iLength, iHeight );
                 tile->setWeight( Tileset::Weight::Medium );
-                tile->coordinates.x = iWidth;
-                tile->coordinates.y = iLength;
-                tile->coordinates.z = iHeight;
 
                 comp.add( tile );
             }

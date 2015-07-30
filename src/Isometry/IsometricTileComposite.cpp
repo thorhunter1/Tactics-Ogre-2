@@ -9,9 +9,7 @@ int IsometricTileComposite::add( IsometricTile* tile )
 
 int IsometricTileComposite::add( IsometricTile* tile, int x, int y, int z )
 {
-    tile->coordinates.x = x;
-    tile->coordinates.y = y;
-    tile->coordinates.z = z;
+    tile->setPosition( x, y, z );
 
     add( tile );
 }
@@ -25,16 +23,16 @@ IsometricTile* IsometricTileComposite::getTile( int x, int y )
     auto iter = tileComposite_.begin();
     IsometricTile* choosen = NULL;
 
-    int highest_z = (*iter)->coordinates.z;
+    int highest_z = (*iter)->getPosition().z;
     while( iter != tileComposite_.end() )
     {
-        if( (*iter)->coordinates.x != x || (*iter)->coordinates.y != y )
+        if( (*iter)->getPosition().x != x || (*iter)->getPosition().y != y )
         {
             ++iter;
             continue;
         }
 
-        if( (*iter)->coordinates.z >= highest_z ) choosen = *iter;
+        if( (*iter)->getPosition().z >= highest_z ) choosen = *iter;
         ++iter;
     }
 
@@ -48,9 +46,9 @@ IsometricTile* IsometricTileComposite::getTile( int x, int y, int z )
 
     while( iter != tileComposite_.end() )
     {
-        if(     (*iter)->coordinates.x == x 
-                && (*iter)->coordinates.y == y
-                && (*iter)->coordinates.z == z )
+        if(     (*iter)->getPosition().x == x 
+                && (*iter)->getPosition().y == y
+                && (*iter)->getPosition().z == z )
         {
                 choosen = *iter;
         }

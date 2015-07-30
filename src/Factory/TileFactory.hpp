@@ -6,7 +6,7 @@
 class TileFactory
 {
 	public:
-		static IsometricTile* create( const std::string& type );
+		static IsometricTile* create( const std::string& type, int x = 0, int y = 0, int z = 0 );
 		static IsometricTile* get( unsigned int ID );
 		static int remove( unsigned int ID );
 		static int remove( IsometricTile* tile );

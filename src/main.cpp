@@ -184,7 +184,7 @@ int main()
     map1.add( &dirt_comp3, 1, 5, 2 );
     map1.add( &grass_comp3, 0, 7, 0 );
 
-    Isometry::smoothMap( &map1 );
+    Isometry::smoothMap( map1 );
 
     for( auto iter = units.begin(); iter != units.end(); ++iter )
 	{
@@ -203,9 +203,6 @@ int main()
 	while( true ) 
 	{
         Renderer::render( map1, 500, 500 );
-        //Renderer::render( dirt_comp, 400, 300 );
-        //Renderer::render( grass_comp, 400, 300 );
-        //Renderer::render( long_grass_comp, 200, 200 );
 		
         Renderer::render( wizard1, 100, 25 );
 		Renderer::render( archer1, 200, 25 );
@@ -215,7 +212,7 @@ int main()
 
 		Renderer::clear();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(33) );
 	}
 
 
