@@ -53,6 +53,7 @@ int Renderer::clear()
 int Renderer::_init()
 {
 	window_.create( sf::VideoMode( 800, 600 ), "My window", sf::Style::Close );
+	preMapTexture_.create( 800, 800 );
 }
 
 int Renderer::_render( RenderableObject* obj, int x, int y )
@@ -68,7 +69,7 @@ int Renderer::_render( RenderableObject* obj, int x, int y )
 	sprite.setPosition( x, y );
 	sprite.setScale( 2, 2 );
 
-	window_.draw( sprite );
+	preMapTexture_.draw( sprite );
 
 	return 0;
 }
@@ -138,11 +139,11 @@ int Renderer::_render( IsometricTile* tile, Tileset::Visibility vis, int off_x, 
 
 	if( rendCliff )
 	{
-		if( vis & orient_vis ) window_.draw( cliff1 );
+		if( vis & orient_vis ) preMapTexture_.draw( cliff1 );
 	}
 	if( rendTile )
 	{
-		if( vis & orient_vis ) window_.draw( sprite1 );
+		if( vis & orient_vis ) preMapTexture_.draw( sprite1 );
 	}
 }
 
@@ -152,25 +153,23 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 {
 	sf::Vector3f map_size = map.getSize();
 
-	
+
 	for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
 	{
-
-	for( int iLayer = 0; iLayer < 3; ++iLayer )
-	{
-		for( int iWidth = map_size.x - 1; iWidth >= 0; --iWidth )
+		for( int iLayer = 0; iLayer < 3; ++iLayer )
 		{
-			for( int iLength = map_size.y - 1; iLength >= 0; --iLength )
+			for( int iWidth = map_size.x - 1; iWidth >= 0; --iWidth )
 			{
-				
-				//for( int iHeight = 0; iHeight < map_size.z; ++iHeight )
-				//{
+				for( int iLength = map_size.y - 1; iLength >= 0; --iLength )
+				{
 					//TODO: perhaps move visibility to isometricObject/tile member?
 
 					IsometricTile* main_tile = map.getTile( iWidth, iLength, iHeight );
 					if( main_tile == NULL ) { continue; }
 
 					Tileset::Visibility vis = _checkVisibility( main_tile, &map );
+
+					// Main rendering
 
 					if( iLayer == 0 ) 
 						_render( main_tile, vis, off_x, off_y, true, true );
@@ -181,6 +180,8 @@ int Renderer::_render( IsometricMap& map, int off_x, int off_y )
 					IsometricTile* w_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight );
 					IsometricTile* s_bot_tile = Isometry::getAdjacentTile( &map, Orientation::South, iWidth, iLength, iHeight -1 );
 					IsometricTile* w_bot_tile = Isometry::getAdjacentTile( &map, Orientation::West, iWidth, iLength, iHeight -1 );
+
+					// Rerendering of tile part covered by bottom cliff
 
 					if( s_tile == NULL && s_bot_tile != NULL )
 					{
@@ -226,7 +227,13 @@ Tileset::Visibility Renderer::_checkVisibility( IsometricTile* tile, IsometricMa
 
 int Renderer::_clear()
 {
+	preMapTexture_.display();
+
+	sf::Texture tmp_tex = preMapTexture_.getTexture();
+	sf::Sprite tmp_sprite( tmp_tex );
+	window_.draw( tmp_sprite );
+
+	preMapTexture_.clear( sf::Color( 56, 155, 155, 255 ) );
 	window_.display();
-	window_.clear( sf::Color( 56, 155, 155, 255 ) );
 }
 

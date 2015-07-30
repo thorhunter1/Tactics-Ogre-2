@@ -34,6 +34,7 @@ class Renderer
 	    virtual int _clear();
 
         sf::RenderWindow window_;
+	sf::RenderTexture preMapTexture_;
 	    std::vector< sf::RenderTexture > textureLayers_;
 
 	    int baseX_;
