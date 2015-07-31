@@ -48,9 +48,6 @@ int Renderer::renderMap()
 	//tmp_sprite.setColor( sf::Color::Blue );
 	//
 	r.window_.draw( tmp_sprite );
-
-
-
 }
 
 int Renderer::preRender( IsometricMap& map, int off_x, int off_y )
@@ -68,8 +65,8 @@ int Renderer::clear()
 int Renderer::_init()
 {
 	window_.create( sf::VideoMode( 800, 600 ), "My window", sf::Style::Close );
-	preMapTexture_.setSmooth( true );
 	preMapTexture_.create( 800, 800 );
+    preMapTexture_.clear( sf::Color::Transparent );
 }
 
 int Renderer::_render( RenderableObject* obj, int x, int y )
